@@ -2,11 +2,20 @@
 
 return [
     'components' => [
+        // localhost side
+        // 'db' => [
+        //     'class' => \yii\db\Connection::class,
+        //     'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
+        //     'username' => 'root',
+        //     'password' => 'Galaxycuatro12345',
+        //     'charset' => 'utf8',
+        // ],
+        // Server side
         'db' => [
             'class' => \yii\db\Connection::class,
             'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
             'username' => 'root',
-            'password' => 'Galaxycuatro12345',
+            'password' => 'affiliatepass123',
             'charset' => 'utf8',
         ],
         'mailer' => [
