@@ -70,6 +70,12 @@ class ProductosController extends Controller
     {
         $model = new Productos();
 
+        $categorias = [ 
+                'computers' => 'computers', 
+                'speakers' => 'speakers',  
+                'watches' => 'watches'
+            ];
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->imagen = UploadedFile::getInstance($model, 'imagen');
@@ -81,7 +87,10 @@ class ProductosController extends Controller
                 }
 
                 $model->save();
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 
+                    'id' => $model->id,
+                    'categorias' => $categorias
+                ]);
             }
         } else {
             $model->loadDefaultValues();
@@ -89,6 +98,7 @@ class ProductosController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'categorias' => $categorias
         ]);
     }
 
