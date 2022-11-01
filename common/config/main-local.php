@@ -10,6 +10,7 @@ return [
         //     'password' => 'Galaxycuatro12345',
         //     'charset' => 'utf8',
         // ],
+        
         // Server side
         'db' => [
             'class' => \yii\db\Connection::class,

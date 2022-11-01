@@ -19,7 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title> <?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -29,15 +29,15 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
+        'brandUrl' => ['/site/productos'],
         'options' => [
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Productos', 'url' => ['/site/productos']],
+        ['label' => 'Home', 'url' => ['/site/productos']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'About', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
