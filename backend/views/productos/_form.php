@@ -6,13 +6,10 @@ use yii\widgets\ActiveForm;
 /** @var yii\web\View $this */
 /** @var common\models\Productos $model */
 /** @var yii\widgets\ActiveForm $form */
-$categorias = [ 'computers' => 'computers', 
-                'speakers' => 'speakers',  
-                'watches' => 'watches'];
+
 ?>
 
-<div class="productos-form">
-    
+<div class="productos-form"
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
