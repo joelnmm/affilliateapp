@@ -11,6 +11,7 @@ use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
+
 ?>
 
 <style>
@@ -59,9 +60,19 @@ body{
   width: 20%;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 70%;
   transform: translate(-50%, -50%);
 }
+
+@media (max-width: 1000px) {
+.wrap{
+    position: relative;
+    left: 50%;
+    width: 65%;
+ }
+
+}
+
 </style>
 
 <?php $this->beginPage() ?>
@@ -100,7 +111,7 @@ body{
     ]);
 
     ?>
-    
+
     <div class="wrap">
         <div class="search">
             <input type="text" class="searchTerm" placeholder="What are you looking for?">
