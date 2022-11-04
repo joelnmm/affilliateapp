@@ -1,5 +1,12 @@
 <!-- Products display -->
 <!DOCTYPE html>
+
+<style>
+.bg-custom {
+    background: #e6f5f4;
+}
+</style>
+
 <html lang="en">
 
     <head>
@@ -170,7 +177,7 @@
 	<!-- End Featured ================================================== -->
 
     <!-- filtering navbar -->
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <nav class="navbar bg-custom navbar-expand-md">
         <div class="container">
             <button class="navbar-toggler d-none" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">

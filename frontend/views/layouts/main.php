@@ -73,6 +73,11 @@ body{
 
 }
 
+.bg-custom-nav {
+    /* background: #8c0606; */
+    background: #c9c9c9;
+}
+
 </style>
 
 <?php $this->beginPage() ?>
@@ -94,7 +99,7 @@ body{
         'brandLabel' => Yii::$app->name,
         'brandUrl' => ['/site/productos'],
         'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+            'class' => 'navbar navbar-expand-md bg-custom-nav fixed-top',
         ],
     ]);
     $menuItems = [
