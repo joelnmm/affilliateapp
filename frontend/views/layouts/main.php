@@ -55,7 +55,6 @@ body{
   font-size: 20px;
 }
 
-/*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 20%;
   position: absolute;
@@ -64,6 +63,7 @@ body{
   transform: translate(-50%, -50%);
 }
 
+/* for movil devices */
 @media (max-width: 1000px) {
 .wrap{
     position: relative;
@@ -110,18 +110,20 @@ body{
         'items' => $menuItems,
     ]);
 
+
+    if (str_contains($_SERVER['REQUEST_URI'], 'producto')) { 
     ?>
 
-    <div class="wrap">
-        <div class="search">
-            <input type="text" class="searchTerm" placeholder="What are you looking for?">
-            <button type="submit" class="searchButton">
-                <i class="fa fa-search"></i>
-            </button>
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </div>
-    </div>
 
-    <?php
+    <?php }
 
     if (Yii::$app->user->isGuest) {
         echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
