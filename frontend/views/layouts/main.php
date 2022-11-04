@@ -12,6 +12,58 @@ use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
 ?>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #635d5e;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #000000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #635d5e;
+  background: #635d5e;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 20%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
@@ -36,7 +88,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/productos']],
-        ['label' => 'About Us', 'url' => ['/site/contact']],
+        ['label' => 'About us', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -46,6 +98,20 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
         'items' => $menuItems,
     ]);
+
+    ?>
+    
+    <div class="wrap">
+        <div class="search">
+            <input type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <?php
+
     if (Yii::$app->user->isGuest) {
         echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
     } else {
@@ -80,4 +146,31 @@ AppAsset::register($this);
 <?php $this->endBody() ?>
 </body>
 </html>
+
+<script>
+
+$(document).ready(function(){
+    $("#search").focus(function() {
+      $(".search-box").addClass("border-searching");
+      $(".search-icon").addClass("si-rotate");
+    });
+    $("#search").blur(function() {
+      $(".search-box").removeClass("border-searching");
+      $(".search-icon").removeClass("si-rotate");
+    });
+    $("#search").keyup(function() {
+        if($(this).val().length > 0) {
+          $(".go-icon").addClass("go-in");
+        }
+        else {
+          $(".go-icon").removeClass("go-in");
+        }
+    });
+    $(".go-icon").click(function(){
+      $(".search-form").submit();
+    });
+});
+
+</script>
+
 <?php $this->endPage();
