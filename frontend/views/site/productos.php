@@ -35,14 +35,12 @@
     </head>
 
     <!-- Begin Site Title ================================================== -->
-    <!-- <div class="container"> -->
-        <div class="mainheading">
-            <h1 class="sitetitle">Explore</h1>
-            <p class="lead">
-                Bootstrap theme, medium style, simply perfect for bloggers
-            </p>
-        </div>
-    <!-- </div> -->
+    <div class="mainheading">
+        <h1 class="sitetitle">Explore</h1>
+        <p class="lead">
+            The most interesting items in technology these days
+        </p>
+    </div>
     <!-- End Site Title ================================================== -->
 
 	<!-- Begin Featured ================================================== -->

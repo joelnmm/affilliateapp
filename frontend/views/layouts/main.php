@@ -30,11 +30,11 @@ body{
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #635d5e;
+  border: 2px solid #635d5e;
   border-right: none;
-  padding: 5px;
+  padding: 10px;
   height: 36px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 20px 0 0 20px;
   outline: none;
   color: #9DBFAF;
 }
@@ -50,7 +50,7 @@ body{
   background: #635d5e;
   text-align: center;
   color: #fff;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 20px 20px 0;
   cursor: pointer;
   font-size: 20px;
 }
@@ -127,6 +127,7 @@ body{
                 </button>
             </div>
         </div>
+
 
     <?php }
 
