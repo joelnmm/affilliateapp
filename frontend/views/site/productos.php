@@ -3,7 +3,7 @@
 
 <style>
 .bg-custom {
-    background: #e6f5f4;
+    background: #969696;
 }
 </style>
 
@@ -55,7 +55,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/home.jpg);">
+						<div class="thumbnail" style="background-image:url(@web/../../../backend/web/uploads/home.jpg);">
 						</div>
 					</a>
 				</div>
@@ -85,7 +85,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/macbook-pro-14-and-16_overview__fz0lron5xyuu_og.png);">
+						<div class="thumbnail" style="background-image:url(@web/../../../backend/web/uploads/macbook-pro-14-and-16_overview__fz0lron5xyuu_og.png);">
 						</div>
 					</a>
 				</div>
@@ -115,7 +115,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/default-img.jpg);">
+						<div class="thumbnail" style="background-image:url(@web/../../../backend/web/uploads/default-img.jpg);">
 						</div>
 					</a>
 				</div>
@@ -145,7 +145,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/161591-laptops-review-apple-macbook-pro-review-image7-7y54imelrt.jpg);">
+						<div class="thumbnail" style="background-image:url(@web/../../../backend/web/uploads/161591-laptops-review-apple-macbook-pro-review-image7-7y54imelrt.jpg);">
 						</div>
 					</a>
 				</div>
@@ -264,7 +264,7 @@
                 <div class="product-item">
                     <div class="product-single">
                         <div class="product-img">
-                            <img src="@web/../../../../backend/web/uploads/<?php echo $row['imagen'];?>" alt="Product Image"/>
+                            <img src="@web/../../../backend/web/uploads/<?php echo $row['imagen'];?>" alt="Product Image"/>
                             <div class="product-price">
                                 <span>$<?php echo $row['precio'];?></span>
                             </div>

@@ -49,5 +49,6 @@ return [
     ],
 
     'params' => $params,
+    'defaultRoute' => 'site/productos',
     
 ];
