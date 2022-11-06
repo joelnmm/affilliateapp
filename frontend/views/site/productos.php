@@ -8,7 +8,8 @@
 </style>
 
 <?php 
-    if (str_contains($_SERVER['REQUEST_URI'], 'producto')) { 
+
+    if (str_contains($_SERVER['REQUEST_URI'], 'affilliateapp')) { 
         $pathToImg = '@web/../../../../backend/web/';
     }else{
         $pathToImg = '@web/../../../backend/web/';
