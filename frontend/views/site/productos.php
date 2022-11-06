@@ -55,14 +55,14 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/home.jpg);">
+						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/iphone14pro.jpg);">
 						</div>
 					</a>
 				</div>
 				<div class="col-md-7">
 					<div class="card-block">
-						<h2 class="card-title"><a href="post.html">We're living some strange times</a></h2>
-						<h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
+						<h2 class="card-title"><a href="post.html">Why move to iPhone 14?</a></h2>
+						<h4 class="card-text">The all new iPhone 14 has a lot of cool features that can make you choose this device as you next phone.</h4>
 						<div class="metafooter">
 							<div class="wrapfooter">
 								<span class="meta-footer-thumb">
