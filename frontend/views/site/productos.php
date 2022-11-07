@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/iphone14pro.jpg);">
+						<div class="thumbnail" style="background-image:url(@web/../../../../backend/web/uploads/iphone14pro.jpg);">
 						</div>
 					</a>
 				</div>
@@ -96,7 +96,7 @@
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
 					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/macbook-pro-14-and-16_overview__fz0lron5xyuu_og.png);">
+						<div class="thumbnail" style="background-image:url(@web/../../../backend/web/uploads/macbook-pro-14-and-16_overview__fz0lron5xyuu_og.png);">
 						</div>
 					</a>
 				</div>
