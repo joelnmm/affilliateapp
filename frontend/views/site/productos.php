@@ -15,7 +15,8 @@
     //     $pathToImg = '@web/../../../backend/web/';
     // }
 
-    $pathToImg = '@web/../../../../backend/web/';
+    //$pathToImg = '@web/../../../../backend/web/';
+    $pathToImg = '/var/wwww/html/backend/web/';
 ?>
 
 <html lang="en">
