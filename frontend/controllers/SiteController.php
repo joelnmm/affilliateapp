@@ -77,7 +77,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         // return $this->render('index');
-        return Yii::$app->response->redirect(['frontend/web/site/productos']); 
+        return Yii::$app->response->redirect(['site/productos']); 
     }
 
     /**
