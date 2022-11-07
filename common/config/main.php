@@ -10,4 +10,5 @@ return [
             'class' => \yii\caching\FileCache::class,
         ],
     ],
+    'defaultRoute' => 'frontend/web/site/productos',
 ];
