@@ -26,6 +26,7 @@ body{
   width: 100%;
   position: relative;
   display: flex;
+  right: 40px;
 }
 
 .searchTerm {
@@ -70,6 +71,12 @@ body{
     left: 50%;
     width: 65%;
  }
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  right: 0px;
+}
 
 }
 
@@ -129,7 +136,24 @@ body{
         </div>
 
 
-    <?php }
+    <?php }?>
+
+    <!-- Languaje selector -->
+    <div class="nav-wrapper">
+        <div class="sl-nav">
+            <ul>
+            <li><b>Español</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <div class="triangle"></div>
+                <ul>
+                <li><i class="sl-flag flag-de"><div id="germany"></div></i> <span class="active">Español</span></li>
+                <li><i class="sl-flag flag-usa"><div id="germany"></div></i> <span>English</span></li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+    <?php
 
     if (Yii::$app->user->isGuest) {
         echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
