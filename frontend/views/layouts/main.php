@@ -26,7 +26,7 @@ body{
   width: 100%;
   position: relative;
   display: flex;
-  right: 40px;
+  right: 80px;
 }
 
 .searchTerm {
@@ -54,6 +54,7 @@ body{
   border-radius: 0 20px 20px 0;
   cursor: pointer;
   font-size: 20px;
+  padding-right: 20px;
 }
 
 .wrap{
@@ -142,11 +143,11 @@ body{
     <div class="nav-wrapper">
         <div class="sl-nav">
             <ul>
-            <li><b>Español</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <li><b>Spanish</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <ul>
-                <li><i class="sl-flag flag-de"><div id="germany"></div></i> <span class="active">Español</span></li>
-                <li><i class="sl-flag flag-usa"><div id="germany"></div></i> <span>English</span></li>
+                <li onclick="changeLanguajeSpanish('spain')"><i class="sl-flag flag-de"><div id="spain"></div></i> <span class="active">Spanish</span></li>
+                <li onclick="changeLanguaje('usa')"><i class="sl-flag flag-usa"><div id="usa"></div></i> <span>English</span></li>
                 </ul>
             </li>
             </ul>
@@ -191,6 +192,33 @@ body{
 </html>
 
 <script>
+    function changeLanguajeSpanish(i) {
+        console.log('funciona')
+
+        // $.get("http://www.bittadvice.com/frontend/web/index.php/site/lenguaje", function (result, status, xhr) {
+        $.get("http://localhost/affilliateapp/frontend/web/index.php/site/lenguaje", function (result, status, xhr) {
+                // var obj = JSON.parse(result);
+                // console.log(obj)
+                if (status == "success") {
+                    location.reload();
+                    alert(result);
+                    // if (obj.transaccion) {
+                    //     alert('Anulado correctamente');
+                    //     location.reload();
+                    //     // alert('Se genero de manera correcta'); // alert(obj.url); location.href=obj.url; $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" ); //window.open(obj.url) }else{ alert('No se pudo generar, intente más tarde' ); $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" );
+                    // } else {
+                    //     alert('Error al procesar la solicitud 1');
+                    // }
+
+                } else if (status == "error") {//status puede ser también:"success", "notmodified", "error", "timeout", or "parsererror"
+                    alert('Error al procesar la solicitud 2');
+                }
+        }).fail(function () {
+            alert('Error al procesar la solicitud 3');
+        });
+
+        
+    }
 
 </script>
 

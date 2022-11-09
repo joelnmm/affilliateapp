@@ -1,9 +1,19 @@
+<?php 
+	use yii\bootstrap5\Html;
+?>
+
 <!-- Products display -->
 <!DOCTYPE html>
 
 <style>
 .bg-custom {
     background: #969696;
+}
+.title-container{
+    height: 50px;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
 }
 </style>
 
@@ -36,6 +46,9 @@
         <!-- Nav bar dropdown -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
+        <!-- Main css -->
+        <!-- <link href="@web/../../../../frontend/web/css/mediumish.css" rel="stylesheet"/> -->
+
     </head>
 
     <!-- Begin Site Title ================================================== -->
@@ -58,14 +71,17 @@
 		<div class="card">
 			<div class="row">
 				<div class="col-md-5 wrapthumbnail">
-					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/iphone14pro.jpg);">
-						</div>
+					<a href="">
+                        <?= Html::a( '', ['article'], ['class' => "thumbnail", 'style' => "background-image:url(" . $pathToImg . "uploads/iphone14pro.jpg);"]) ?>
 					</a>
 				</div>
 				<div class="col-md-7">
 					<div class="card-block">
-						<h2 class="card-title"><a href="post.html">Why move to iPhone 14?</a></h2>
+						<h2 class="card-title">
+                            <a href="">
+                                <?= Html::a( 'Why move to iPhone 14?', ['article']) ?>
+                            </a>
+                        </h2>
 						<h4 class="card-text">The all new iPhone 14 has a lot of cool features that can make you choose this device as you next phone.</h4>
 						<div class="metafooter">
 							<div class="wrapfooter">
@@ -269,21 +285,21 @@
                     <div class="product-single">
                         <div class="product-img">
                             <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/>
-                            <div class="product-price">
+                            <!-- <div class="product-price">
                                 <span>$<?php echo $row['precio'];?></span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="product-content">
-                            <div class="product-title">
+                            <div class="product-title title-container">
                                 <h2><a href=""><?php echo $row['nombre'];?></a></h2>
                             </div>
-                            <div class="product-ratting">
+                            <!-- <div class="product-ratting">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
-                            </div>
+                            </div> -->
                             <div class="product-description">
                                 <?php echo $row['descripcion'];?>
                             </div>
@@ -308,6 +324,30 @@
 </html>
 
 <script>
+
+    function viewArticle(){
+        $.get("http://localhost/affilliateapp/frontend/web/index.php/site/article", function (result, status, xhr) {
+                // var obj = JSON.parse(result);
+                // console.log(obj)
+                if (status == "success") {
+                    // location.reload();
+                    console.log("funciona!!")
+                    // if (obj.transaccion) {
+                    //     alert('Anulado correctamente');
+                    //     location.reload();
+                    //     // alert('Se genero de manera correcta'); // alert(obj.url); location.href=obj.url; $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" ); //window.open(obj.url) }else{ alert('No se pudo generar, intente más tarde' ); $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" );
+                    // } else {
+                    //     alert('Error al procesar la solicitud 1');
+                    // }
+
+                } else if (status == "error") {//status puede ser también:"success", "notmodified", "error", "timeout", or "parsererror"
+                    alert('Error al procesar la solicitud 2');
+                }
+        }).fail(function () {
+            alert('Error al procesar la solicitud 3');
+        });
+    }
+
     var $maxWidthElement = $('.navbar'),
     maxWidth = $maxWidthElement.width();
 

@@ -41,14 +41,14 @@ return [
             'errorAction' => 'site/error',
         ],
         // Para mejorar la url y SEO friendly
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+        
+        // 'urlManager' => [
+        //     'enablePrettyUrl' => true,
+        //     'showScriptName' => false,
+        //     'rules' => [
+        //     ],
+        // ],
+        
         
     ],
 

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use Yii;
 
 /**
  * ProductosController implements the CRUD actions for Productos model.
@@ -89,11 +90,17 @@ class ProductosController extends Controller
                 $model->save();
                 return $this->redirect(['view', 
                     'id' => $model->id,
-                    'categorias' => $categorias
+                    // 'categorias' => $categorias
                 ]);
             }
         } else {
-            $model->loadDefaultValues();
+            
+            if(empty($model->errors)){
+                $model->loadDefaultValues();
+            }else{
+                return var_dump($model->errors);            
+            }
+
         }
 
         return $this->render('create', [
@@ -112,6 +119,11 @@ class ProductosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $categorias = [ 
+            'computers' => 'computers', 
+            'speakers' => 'speakers',  
+            'watches' => 'watches'
+        ];
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -119,6 +131,7 @@ class ProductosController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'categorias' => $categorias
         ]);
     }
 

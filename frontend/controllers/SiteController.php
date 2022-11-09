@@ -268,4 +268,54 @@ class SiteController extends Controller
         ]);
 
     }
+
+    public function actionArticle(){
+
+        return $this->render('article');
+
+    }
+
+    public function actionLenguaje(){
+
+        $file = file_get_contents('../views/site/productos.php');
+
+        $data = [
+            'q' => $file,
+            'target' => 'es',
+            'source' => 'en'
+        ];
+        $query = http_build_query($data);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $query,
+            CURLOPT_HTTPHEADER => [
+                "Accept-Encoding: application/gzip",
+                "X-RapidAPI-Host: google-translate1.p.rapidapi.com",
+                "X-RapidAPI-Key: 03188aa0c3mshbe52069f410589bp181097jsn6880a762a0d8",
+                "content-type: application/x-www-form-urlencoded"
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            return $response;
+        }
+    }
+
 }

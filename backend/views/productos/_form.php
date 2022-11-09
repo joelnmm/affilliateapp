@@ -11,19 +11,21 @@ use yii\widgets\ActiveForm;
 
 <div class="productos-form"
 
+    <?= Html::csrfMetaTags() ?>
+
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]); ?>
 
-    <?= $form->field($model, 'marca')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'marca')->textInput(['maxlength' => true]); ?>
 
-    <?= $form->field($model, 'precio')->textInput() ?>
+    <?= $form->field($model, 'precio')->textInput(); ?>
 
-    <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]); ?>
 
     <?= $form->field($model, 'categoria')->dropDownList($categorias, ['prompt' => 'Seleccione Uno' ]); ?>
 
-    <?= $form->field($model, 'imagen')->fileInput() ?>
+    <?= $form->field($model, 'imagen')->fileInput(); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
