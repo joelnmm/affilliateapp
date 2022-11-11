@@ -27,9 +27,9 @@ HEADER
 					<p class="text-uppercase font-weight-bold">
 						<a class="text-danger" href="./category.html">Stories</a>
 					</p>
-					<h1 class="display-4 secondfont mb-3 font-weight-bold"> <?php echo $_POST['articulos']['titulo'];?> </h1>
+					<h1 class="display-4 secondfont mb-3 font-weight-bold"> <?php echo $model['titulo'];?> </h1>
 					<p class="mb-3">
-						<?php echo $_POST['articulos']['subtitulo'];?>
+						<?php echo $model['subtitulo'];?>
 					</p>
 					<!-- <div class="d-flex align-items-center">
 						<img class="rounded-circle" src="assets/img/demo/avatar2.jpg" width="70">
@@ -38,7 +38,7 @@ HEADER
 					</div> -->
 				</div>
 				<div class="col-md-6 pr-0">
-					<img src="<?php echo $_POST['articulos']['imagen'];?>">
+					<img src="<?php echo $model['imagen'];?>">
 				</div>
 			</div>
 		</div>
@@ -73,7 +73,7 @@ MAIN
 		<div class="col-md-12 col-lg-8">
 			<article class="article-post">
 	
-				<?php echo $_POST['articulos']['texto'];?>
+				<?php echo $model['texto'];?>
 
 			</article>
 			<div class="border p-5 bg-lightblue">

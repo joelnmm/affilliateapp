@@ -1,5 +1,6 @@
 <?php 
 	use yii\bootstrap5\Html;
+    use yii\helpers\Url;
 ?>
 
 <!-- Products display -->
@@ -70,26 +71,15 @@
         <?php
         if(!empty($dataArticulos)){
             foreach($dataArticulos as $articulo){
-                $articleParams = [
-                    'articulos[titulo]' => $articulo['titulo'],
-                    'articulos[subtitulo]' => $articulo['subtitulo'],
-                    'articulos[subtitulo]' => $articulo['subtitulo'],
-                    'articulos[texto]' => $articulo['texto'],
-                    'articulos[imagen]' => $articulo['imagen'],
-                ]
         ?>
             <!-- begin post -->
             <div class="card">
                 <div class="row">
                     <div class="col-md-5 wrapthumbnail">
                         <a href="">
-                            <?= Html::a( '', ['article'], [
+                            <?= Html::a( '', ['site/article', ['id' => $articulo['id']]], [
                                 'class' => "thumbnail", 
-                                'style' => "background-image:url(" . $articulo['imagen'] . ");",
-                                'data' => [
-                                        'method' => 'post',
-                                        'params' => $articleParams,
-                                    ]
+                                'style' => "background-image:url(" . $articulo['imagen'] . ");"
                                 ]) ?>
                         </a>
                     </div> 
@@ -97,12 +87,7 @@
                         <div class="card-block">
                             <h2 class="card-title">
                                 <a href="">
-                                    <?= Html::a( $articulo['titulo'], ['article'],[
-                                    'data' => [
-                                            'method' => 'post',
-                                            'params' => $articleParams,
-                                        ]
-                                    ]) ?>
+                                    <?= Html::a( $articulo['titulo'], ['site/article', ['id' => $articulo['id']]]) ?>
                                 </a>
                             </h2>
                             <h4 class="card-text"> <?php echo $articulo['subtitulo'];?> </h4>

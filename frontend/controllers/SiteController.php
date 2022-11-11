@@ -261,7 +261,7 @@ class SiteController extends Controller
     }
 
     public function actionProductos(){
-        // $data
+
         $data = Productos::find()->all();
         $dataArticulos = Articulos::find()->all();
 
@@ -274,7 +274,12 @@ class SiteController extends Controller
 
     public function actionArticle(){
 
-        return $this->render('article');
+        $id = $_GET[1]['id'];
+        $model = Articulos::findOne(['id' => $id]);
+
+        return $this->render('article',[
+            'model' => $model
+        ]);
 
     }
 
