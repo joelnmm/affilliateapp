@@ -16,6 +16,7 @@
                         ['label' => 'Menu Yii2', 'header' => true],
                         ['label' => 'Dashboard', 'icon' => 'tachometer-alt', 'url' => ['/gii']],
                         ['label' => 'Productos', 'icon' => 'file', 'url' => ['productos/index']],
+                        ['label' => 'Articulos', 'icon' => 'file', 'url' => ['articulos/index']],
                         
 
                         // Array for extra tools menu, uncomment if want to make use of it.

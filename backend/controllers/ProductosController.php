@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Productos;
 use common\models\SearchProductos;
+use common\AWS\S3;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -79,20 +80,22 @@ class ProductosController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->imagen = UploadedFile::getInstance($model, 'imagen');
+                $image = UploadedFile::getInstance($model, 'imagen');
+                $url = S3::subirArchivoS3($image->baseName . '.' . $image->extension, 'Productos');
+                $model->imagen = $url;
 
                 if($model->validate()){
-                    $model->imagen->saveAs('uploads/' . $model->imagen->baseName . '.' . $model->imagen->extension);
+                    // $model->imagen->saveAs('uploadsArticle/' . $model->imagen->baseName . '.' . $model->imagen->extension);
+                    
+                    $model->save();
+                    return $this->redirect(['view', 
+                        'id' => $model->id,
+                    ]);
                 }else{
                     return var_dump($model->errors);
                 }
-
-                $model->save();
-                return $this->redirect(['view', 
-                    'id' => $model->id,
-                    // 'categorias' => $categorias
-                ]);
             }
+
         } else {
             
             if(empty($model->errors)){

@@ -67,128 +67,67 @@
 	</div>
 	<div class="card-columns listfeaturedtag">
 
-		<!-- begin post -->
-		<div class="card">
-			<div class="row">
-				<div class="col-md-5 wrapthumbnail">
-					<a href="">
-                        <?= Html::a( '', ['article'], ['class' => "thumbnail", 'style' => "background-image:url(" . $pathToImg . "uploads/iphone14pro.jpg);"]) ?>
-					</a>
-				</div>
-				<div class="col-md-7">
-					<div class="card-block">
-						<h2 class="card-title">
-                            <a href="">
-                                <?= Html::a( 'Why move to iPhone 14?', ['article']) ?>
-                            </a>
-                        </h2>
-						<h4 class="card-text">The all new iPhone 14 has a lot of cool features that can make you choose this device as you next phone.</h4>
-						<div class="metafooter">
-							<div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-								<span class="author-meta">
-								<span class="post-name"><a href="author.html">Steve</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end post -->
+        <?php
+        if(!empty($dataArticulos)){
+            foreach($dataArticulos as $articulo){
+                $articleParams = [
+                    'articulos[titulo]' => $articulo['titulo'],
+                    'articulos[subtitulo]' => $articulo['subtitulo'],
+                    'articulos[subtitulo]' => $articulo['subtitulo'],
+                    'articulos[texto]' => $articulo['texto'],
+                    'articulos[imagen]' => $articulo['imagen'],
+                ]
+        ?>
+            <!-- begin post -->
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-5 wrapthumbnail">
+                        <a href="">
+                            <?= Html::a( '', ['article'], [
+                                'class' => "thumbnail", 
+                                'style' => "background-image:url(" . $articulo['imagen'] . ");",
+                                'data' => [
+                                        'method' => 'post',
+                                        'params' => $articleParams,
+                                    ]
+                                ]) ?>
+                        </a>
+                    </div> 
+                    <div class="col-md-7">
+                        <div class="card-block">
+                            <h2 class="card-title">
+                                <a href="">
+                                    <?= Html::a( $articulo['titulo'], ['article'],[
+                                    'data' => [
+                                            'method' => 'post',
+                                            'params' => $articleParams,
+                                        ]
+                                    ]) ?>
+                                </a>
+                            </h2>
+                            <h4 class="card-text"> <?php echo $articulo['subtitulo'];?> </h4>
+                            <div class="metafooter">
+                                <div class="wrapfooter">
+                                    <span class="meta-footer-thumb">
+                                    <a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
+                                    </span>
+                                    <span class="author-meta">
+                                    <span class="post-name"><a href="author.html"> <?php echo $articulo['autor'];?> </a></span><br/>
+                                    <span class="post-date"> <?php echo $articulo['fecha'];?> </span><span class="dot"></span><span class="post-read">6 min read</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end post -->
 
-		<!-- begin post -->
-		<div class="card">
-			<div class="row">
-				<div class="col-md-5 wrapthumbnail">
-					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/macbook-pro-14-and-16_overview__fz0lron5xyuu_og.png);">
-						</div>
-					</a>
-				</div>
-				<div class="col-md-7">
-					<div class="card-block">
-						<h2 class="card-title"><a href="post.html">The beauty of this world is in your heart</a></h2>
-						<h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-						<div class="metafooter">
-							<div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-								<span class="author-meta">
-								<span class="post-name"><a href="author.html">Jane</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--end post -->
-
-		<!-- begin post -->
-		<div class="card">
-			<div class="row">
-				<div class="col-md-5 wrapthumbnail">
-					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/default-img.jpg);">
-						</div>
-					</a>
-				</div>
-				<div class="col-md-7">
-					<div class="card-block">
-						<h2 class="card-title"><a href="post.html">Dreaming of Las Vegas Crazyness</a></h2>
-						<h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-						<div class="metafooter">
-							<div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-								<span class="author-meta">
-								<span class="post-name"><a href="author.html">Mary</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end post -->
-
-		<!-- begin post -->
-		<div class="card">
-			<div class="row">
-				<div class="col-md-5 wrapthumbnail">
-					<a href="post.html">
-						<div class="thumbnail" style="background-image:url(<?php echo $pathToImg;?>uploads/161591-laptops-review-apple-macbook-pro-review-image7-7y54imelrt.jpg);">
-						</div>
-					</a>
-				</div>
-				<div class="col-md-7">
-					<div class="card-block">
-						<h2 class="card-title"><a href="post.html">San Francisco at its best view in all seasons</a></h2>
-						<h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-						<div class="metafooter">
-							<div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.html"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-								<span class="author-meta">
-								<span class="post-name"><a href="author.html">Sal</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- end post -->
+        <?php } } else { ?>
+            <h2 class="card-title">
+                <a href="">There are no articles</a>
+            </h2>
+        <?php } ?>
 
 	</div>
 	</section>
@@ -269,6 +208,7 @@
         </ul>
     </div>
     
+    <!---------- Product card begin ------------>
     <body>
         <div class="grid-title">
             <h2>Today's choice</h2>
@@ -284,7 +224,9 @@
                 <div class="product-item">
                     <div class="product-single">
                         <div class="product-img">
-                            <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/>
+                            <!-- <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/> -->
+                            <img src="<?php echo $row['imagen'];?>" alt="Product Image"/>
+
                             <!-- <div class="product-price">
                                 <span>$<?php echo $row['precio'];?></span>
                             </div> -->
@@ -321,6 +263,7 @@
         
         </div>
     </body>
+    <!---------- Product card end ------------>
 </html>
 
 <script>

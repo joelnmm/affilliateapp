@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Articulos;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -262,9 +263,11 @@ class SiteController extends Controller
     public function actionProductos(){
         // $data
         $data = Productos::find()->all();
+        $dataArticulos = Articulos::find()->all();
 
         return $this->render('productos',[
-            'data' => $data
+            'data' => $data,
+            'dataArticulos' => $dataArticulos,
         ]);
 
     }

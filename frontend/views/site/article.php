@@ -27,18 +27,18 @@ HEADER
 					<p class="text-uppercase font-weight-bold">
 						<a class="text-danger" href="./category.html">Stories</a>
 					</p>
-					<h1 class="display-4 secondfont mb-3 font-weight-bold">Sterling could jump 8% if Brexit deal gets approved by UK Parliament</h1>
+					<h1 class="display-4 secondfont mb-3 font-weight-bold"> <?php echo $_POST['articulos']['titulo'];?> </h1>
 					<p class="mb-3">
-						 Analysts told CNBC that the currency could hit anywhere between $1.35-$1.40 if the deal gets passed through the U.K. parliament.
+						<?php echo $_POST['articulos']['subtitulo'];?>
 					</p>
-					<div class="d-flex align-items-center">
+					<!-- <div class="d-flex align-items-center">
 						<img class="rounded-circle" src="assets/img/demo/avatar2.jpg" width="70">
 						<small class="ml-2">Jane Seymour <span class="text-muted d-block">A few hours ago &middot; 5 min. read</span>
 						</small>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-md-6 pr-0">
-					<img src="@web/../../../../backend/web/uploads/iphone14pro.jpg">
+					<img src="<?php echo $_POST['articulos']['imagen'];?>">
 				</div>
 			</div>
 		</div>
@@ -72,18 +72,9 @@ MAIN
 		
 		<div class="col-md-12 col-lg-8">
 			<article class="article-post">
-			<p>
-				 Holy grail funding non-disclosure agreement advisor ramen bootstrapping ecosystem. Beta crowdfunding iteration assets business plan paradigm shift stealth mass market seed money rockstar niche market marketing buzz market.
-			</p>
-			<p>
-				 Burn rate release facebook termsheet equity technology. Interaction design rockstar network effects handshake creative startup direct mailing. Technology influencer direct mailing deployment return on investment seed round.
-			</p>
-			<p>
-				 Termsheet business model canvas user experience churn rate low hanging fruit backing iteration buyer seed money. Virality release launch party channels validation learning curve paradigm shift hypotheses conversion. Stealth leverage freemium venture startup business-to-business accelerator market.
-			</p>
-			<p>
-				 Freemium non-disclosure agreement lean startup bootstrapping holy grail ramen MVP iteration accelerator. Strategy market ramen leverage paradigm shift seed round entrepreneur crowdfunding social proof angel investor partner network virality.
-			</p>
+	
+				<?php echo $_POST['articulos']['texto'];?>
+
 			</article>
 			<div class="border p-5 bg-lightblue">
 				<div class="row justify-content-between">
