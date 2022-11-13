@@ -276,6 +276,22 @@ class SiteController extends Controller
 
         $id = $_GET[1]['id'];
         $model = Articulos::findOne(['id' => $id]);
+        $dataArticulos = Articulos::find()->all();
+
+        if(sizeof($dataArticulos) > 1){ //Gets the next article
+
+            foreach($dataArticulos as $articulo){
+                if($articulo->id != $model->id){
+                    $nextArticle = $articulo;
+                }
+            }
+
+            return $this->render('article',[
+                'model' => $model,
+                'nextArticle' => $nextArticle,
+            ]);
+        }
+
 
         return $this->render('article',[
             'model' => $model
@@ -324,6 +340,36 @@ class SiteController extends Controller
         } else {
             return $response;
         }
+    }
+
+    /**
+     * Deletes an existing Productos model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param int $id ID
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Productos model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param int $id ID
+     * @return Productos the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Productos::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 }
