@@ -20,6 +20,16 @@
 	<!-- <link href="@web/../../../../frontend/web/css/main.css" rel="stylesheet"/> -->
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NBEWDZBWY"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-7NBEWDZBWY');
+</script>
+
 <!-- <body> -->
 <!--------------------------------------
 HEADER
