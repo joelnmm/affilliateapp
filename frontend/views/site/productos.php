@@ -64,9 +64,9 @@
 
     <!-- Begin Site Title ================================================== -->
     <div class="mainheading">
-        <h1 class="sitetitle">Explore</h1>
+        <h1 class="sitetitle"><?= $titulo ?></h1>
         <p class="lead">
-            The most interesting items in technology these days
+            <?= $subtitulo ?>
         </p>
     </div>
     <!-- End Site Title ================================================== -->

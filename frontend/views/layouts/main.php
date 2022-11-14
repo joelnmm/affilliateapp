@@ -87,6 +87,11 @@ body{
 }
 
 </style>
+<?php 
+    if(!isset($actualLenguaje)){
+        $actualLenguaje = 'English';
+    }
+?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -143,16 +148,38 @@ body{
     <div class="nav-wrapper">
         <div class="sl-nav">
             <ul>
-            <li><b>Spanish</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <li><b id="activeLenguaje">English</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <ul>
-                <li onclick="changeLanguajeSpanish('spain')"><i class="sl-flag flag-de"><div id="spain"></div></i> <span class="active">Spanish</span></li>
-                <li onclick="changeLanguaje('usa')"><i class="sl-flag flag-usa"><div id="usa"></div></i> <span>English</span></li>
+
+                <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
+                    <span class="active">
+                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es']], [
+                                    'class' => "thumbnail", 
+                                ]); ?>
+                    </span>
+                </li>
+
+                <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
+                    <span>
+                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en']], [
+                                    'class' => "thumbnail", 
+                                ]); ?>
+                    </span>
+                </li>
                 </ul>
             </li>
             </ul>
         </div>
     </div>
+
+<script> 
+
+function changeLenguaje(lenguaje){
+    $('#activeLenguaje').prop('inner-html').val(lenguaje);
+}
+
+</script>
 
     <?php
 

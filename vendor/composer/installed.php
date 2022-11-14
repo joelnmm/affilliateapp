@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '06a178a72bb17529b8c9298d0716b88a61521f67',
+        'reference' => 'cc15b49ffaf869607b8e6a3aa0a30428867f0012',
         'name' => 'yiisoft/yii2-app-advanced',
         'dev' => true,
     ),
@@ -642,6 +642,15 @@
             'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
             'dev_requirement' => true,
         ),
+        'statickidz/php-google-translate-free' => array(
+            'pretty_version' => '1.2.1',
+            'version' => '1.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../statickidz/php-google-translate-free',
+            'aliases' => array(),
+            'reference' => '29dc0b0110fcb78ba51fc2d983d638dbdd7fa439',
+            'dev_requirement' => false,
+        ),
         'symfony/browser-kit' => array(
             'pretty_version' => 'v6.0.11',
             'version' => '6.0.11.0',
@@ -852,7 +861,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '06a178a72bb17529b8c9298d0716b88a61521f67',
+            'reference' => 'cc15b49ffaf869607b8e6a3aa0a30428867f0012',
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-bootstrap4' => array(

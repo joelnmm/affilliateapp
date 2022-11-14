@@ -70,6 +70,7 @@ class ComposerStaticInit9c1dee720aeae11d03497e709f75687f
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'Statickidz\\' => 11,
         ),
         'P' => 
         array (
@@ -232,6 +233,10 @@ class ComposerStaticInit9c1dee720aeae11d03497e709f75687f
         'Symfony\\Component\\BrowserKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
+        ),
+        'Statickidz\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/statickidz/php-google-translate-free/src',
         ),
         'Psy\\' => 
         array (

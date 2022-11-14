@@ -17,12 +17,18 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use \Statickidz\GoogleTranslate;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+
+    const TITULO_PRODUCTOS ='Explore';
+    const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
+    const ACTUAL_LENGUAJE = 'English';
+
     /**
      * {@inheritdoc}
      */
@@ -77,8 +83,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        // return $this->render('index');
+       
         return Yii::$app->response->redirect(['frontend/web/site/productos']); 
+        // $actualLenguaje = self::ACTUAL_LENGUAJE;
+        // return $this->render('productos',[
+        //     'actualLenguaje' => $actualLenguaje
+        // ]);
     }
 
     /**
@@ -268,6 +278,8 @@ class SiteController extends Controller
         return $this->render('productos',[
             'data' => $data,
             'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
         ]);
 
     }
@@ -370,6 +382,48 @@ class SiteController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public static function actionTranslate($text, $target){
+        require_once ('../../vendor/autoload.php');
+
+        $source = 'en';
+
+        $trans = new GoogleTranslate();
+        $result = $trans->translate($source, $target, $text);
+
+        return $result;
+    }
+
+    public function actionTranslatedView(){
+
+        $data = Productos::find()->all();
+        $dataArticulos = Articulos::find()->all();
+        $target = $_GET[1]['target'];
+
+        //TRANSLATES TITLE AND SUBTITLE
+        $titulo = self::actionTranslate(self::TITULO_PRODUCTOS, $target);
+        $subtitulo = self::actionTranslate(self::SUBTITULO_PRODUCTOS, $target);;
+
+        foreach($dataArticulos as $articulo){ //TRANSLATES ARTICLES
+            $articulo->titulo = self::actionTranslate($articulo->titulo, $target);
+            $articulo->subtitulo = self::actionTranslate($articulo->subtitulo, $target);
+            $articulo->texto = self::actionTranslate($articulo->texto, $target);
+            $articulo->fecha = self::actionTranslate($articulo->fecha, $target);
+        }
+
+        foreach($data as $producto){ // TRANSLATE PRODUCTS
+            $producto->nombre = self::actionTranslate($producto->nombre, $target);
+            $producto->descripcion = self::actionTranslate($producto->descripcion, $target);
+        }
+
+        return $this->render('productos',[
+            'data' => $data,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => $titulo,
+            'subtitulo' =>  $subtitulo,
+        ]);
+
     }
 
 }
