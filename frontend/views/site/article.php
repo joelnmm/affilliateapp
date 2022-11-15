@@ -120,29 +120,31 @@ MAIN
 }
 </style>
     
-<div class="containerFoot pt-4 pb-4">
-	<h5 class="font-weight-bold spanborder"><span>Read next</span></h5>
-	<div class="row">
-		<div class="mb-3 d-flex align-items-center">
-			<img height="200" src="<?php echo $nextArticle['imagen'];?>" >
-				<div class="pl-3">
-					<h2 class="h4 font-weight-bold">
-						<a class="text-dark" href="#">
-							<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
-						</a>
-					</h2>
-					<p class="card-text">
-						<?php echo $nextArticle['subtitulo'] ?>
-					</p>
-					<div>
-						<small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-						<small class="text-muted">Dec 12 · 5 min read</small>
+<?php if(isset($nextArticle)){ ?>
+	<div class="containerFoot pt-4 pb-4">
+		<h5 class="font-weight-bold spanborder"><span>Read next</span></h5>
+		<div class="row">
+			<div class="mb-3 d-flex align-items-center">
+				<img height="200" src="<?php echo $nextArticle['imagen'];?>" >
+					<div class="pl-3">
+						<h2 class="h4 font-weight-bold">
+							<a class="text-dark" href="#">
+								<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
+							</a>
+						</h2>
+						<p class="card-text">
+							<?php echo $nextArticle['subtitulo'] ?>
+						</p>
+						<div>
+							<small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
+							<small class="text-muted">Dec 12 · 5 min read</small>
+						</div>
 					</div>
-				</div>
+			</div>
+			
 		</div>
-		
 	</div>
-</div>
+<?php } ?>
 <!-- End Main -->
     
     

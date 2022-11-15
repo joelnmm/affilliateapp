@@ -128,8 +128,10 @@ body{
         'items' => $menuItems,
     ]);
 
-
-    if (str_contains($_SERVER['REQUEST_URI'], 'producto')) { 
+    $id = '';
+    $view = 'productos';
+    if (str_contains($_SERVER['REQUEST_URI'], 'productos')) { 
+        $view = 'productos';
     ?>
 
         <div class="wrap">
@@ -141,8 +143,11 @@ body{
             </div>
         </div>
 
-
-    <?php }?>
+    <?php 
+    } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
+        $id = explode('=',$_SERVER['REQUEST_URI'])[1];
+        $view = 'article';
+    }?>
 
     <!-- Languaje selector -->
     <div class="nav-wrapper">
@@ -154,7 +159,7 @@ body{
 
                 <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
                     <span class="active">
-                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es']], [
+                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es', 'view' => $view, 'id' => $id]], [
                                     'class' => "thumbnail", 
                                 ]); ?>
                     </span>
@@ -162,7 +167,7 @@ body{
 
                 <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
                     <span>
-                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en']], [
+                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en', 'view' => $view, 'id' => $id]], [
                                     'class' => "thumbnail", 
                                 ]); ?>
                     </span>

@@ -17,6 +17,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\UtilServices;
 use \Statickidz\GoogleTranslate;
 
 /**
@@ -25,9 +26,9 @@ use \Statickidz\GoogleTranslate;
 class SiteController extends Controller
 {
 
-    const TITULO_PRODUCTOS ='Explore';
-    const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
-    const ACTUAL_LENGUAJE = 'English';
+    public const TITULO_PRODUCTOS ='Explore';
+    public const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
+    public const ACTUAL_LENGUAJE = 'English';
 
     /**
      * {@inheritdoc}
@@ -134,6 +135,7 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
@@ -144,8 +146,20 @@ class SiteController extends Controller
             return $this->refresh();
         }
 
+        $title = 'About Us';
+        $paragraph = 'BitAdvice is a site focused on sharing the most interesting stuff that you can buy online. We are constantly searching
+        for cool things online so that you can see them all in one place.<br><br>The products listed on this site may receive a commission for product referral, this is a small help to keep BitAdvice
+        as cool as always, but this is not the main motivation, our goal is to create a helpful place where people can find items
+        for their needs. We appreciate your visit to our web site and hope we see you around again.';
+        $title2 = 'Contact Us';
+        $paragraph2 = 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.';
+
         return $this->render('contact', [
             'model' => $model,
+            'title' => $title,
+            'paragraph' => $paragraph,
+            'title2' => $title2,
+            'paragraph2' => $paragraph2
         ]);
     }
 
@@ -384,45 +398,15 @@ class SiteController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public static function actionTranslate($text, $target){
-        require_once ('../../vendor/autoload.php');
-
-        $source = 'en';
-
-        $trans = new GoogleTranslate();
-        $result = $trans->translate($source, $target, $text);
-
-        return $result;
-    }
-
     public function actionTranslatedView(){
 
-        $data = Productos::find()->all();
-        $dataArticulos = Articulos::find()->all();
         $target = $_GET[1]['target'];
+        $view = $_GET[1]['view'];
+        $id = $_GET[1]['id'];
 
-        //TRANSLATES TITLE AND SUBTITLE
-        $titulo = self::actionTranslate(self::TITULO_PRODUCTOS, $target);
-        $subtitulo = self::actionTranslate(self::SUBTITULO_PRODUCTOS, $target);;
+        $params = UtilServices::translateByView($target, $view, $id, self::TITULO_PRODUCTOS, self::SUBTITULO_PRODUCTOS);
 
-        foreach($dataArticulos as $articulo){ //TRANSLATES ARTICLES
-            $articulo->titulo = self::actionTranslate($articulo->titulo, $target);
-            $articulo->subtitulo = self::actionTranslate($articulo->subtitulo, $target);
-            $articulo->texto = self::actionTranslate($articulo->texto, $target);
-            $articulo->fecha = self::actionTranslate($articulo->fecha, $target);
-        }
-
-        foreach($data as $producto){ // TRANSLATE PRODUCTS
-            $producto->nombre = self::actionTranslate($producto->nombre, $target);
-            $producto->descripcion = self::actionTranslate($producto->descripcion, $target);
-        }
-
-        return $this->render('productos',[
-            'data' => $data,
-            'dataArticulos' => $dataArticulos,
-            'titulo' => $titulo,
-            'subtitulo' =>  $subtitulo,
-        ]);
+        return $this->render($view, $params);
 
     }
 
