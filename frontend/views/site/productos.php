@@ -16,6 +16,20 @@
     justify-content: center; /* align horizontal */
     align-items: center;
 }
+
+.ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    font-size: 11px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    opacity: 1 !important;
+}
 </style>
 
 <?php 
@@ -134,55 +148,11 @@
             <button class="navbar-toggler d-none" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
 
-                <ul class="nav navbar-nav w-100 justify-content-between">
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">New listings</a>
-                        <!-- <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">This is a very very long dropdown item and it may overflow the viewport</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                        </div> -->
-                    </li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Trending</a>
-                        <!-- <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">This is a very very long dropdown item and it may overflow the viewport</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                        </div> -->
-                    </li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" data-display="static" aria-expanded="false" href="#">Best price</a>
-                        <!-- <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">This is a very very long dropdown item and it may overflow the viewport</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                        </div> -->
-                    </li>
-                    <!-- <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" data-display="static" aria-expanded="false" href="#">Navbar link 4</a>
-                        <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">This is a very very long dropdown item and it may overflow the viewport</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                        </div>
-                    </li> -->
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" data-display="static" aria-expanded="false" href="#">Navbar link 5</a>
-                        <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">This is a very very long dropdown item and it may overflow the viewport</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a>
-                            <a class="dropdown-item" id="dropdown2-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2.1</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown2-1">
-                                    <li class="dropdown-item" href="#"><a>Action 2.1 A</a></li>
-                                    <li class="dropdown-item" href="#"><a>Action 2.1 B</a></li>
-                                    <li class="dropdown-item" href="#"><a>Action 2.1 C</a></li>
-                                </ul>
-                        </div>
-                    </li>
-                </ul>
-
             </div>
         </div>
     </nav>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
@@ -201,7 +171,34 @@
                 </ul>
             </li>
         </ul>
-    </div>
+    </div> -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container-fluid">
+	    
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav m-auto">
+	        	<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="#">Page 1</a>
+                        <a class="dropdown-item" href="#">Page 2</a>
+                        <a class="dropdown-item" href="#">Page 3</a>
+                        <a class="dropdown-item" href="#">Page 4</a>
+                    </div>
+                </li>
+	        	<li class="nav-item"><a href="#" class="nav-link">Work</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+	        </ul>
+	      </div>
+        </div>
+    </nav>
     
     <!---------- Product card begin ------------>
     <body>

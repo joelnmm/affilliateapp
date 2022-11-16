@@ -400,6 +400,8 @@ class SiteController extends Controller
 
     public function actionTranslatedView(){
 
+        // return self::actionProductos();
+
         $target = $_GET[1]['target'];
         $view = $_GET[1]['view'];
         $id = $_GET[1]['id'];
