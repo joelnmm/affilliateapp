@@ -18,7 +18,6 @@ class S3 {
 
     public static function subirArchivoS3($fileNameProperty,$model) {
 
-        
         $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
         $SecretKey = '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';
         
@@ -69,6 +68,34 @@ class S3 {
             return json_encode($e);
         }
 
+    }
+
+    public static function eliminarArchivoS3($filenameUrl){
+        $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
+        $SecretKey = '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';
+        
+        $credentials = new Credentials($AccessKey, $SecretKey);
+        $s3Client = new S3Client([
+            'region' => 'us-east-1',
+            'version' => 'latest',
+            'credentials' => $credentials,
+        ]);
+
+        $bucketName = 'bittadvise-images';
+        $file = explode('/',$filenameUrl)[3];
+
+        try {
+
+            $s3Client->deleteObject(array(
+                'Bucket' => $bucketName,
+                'Key'    => $file
+            ));
+
+            return true;
+
+        } catch (S3Exception $e) {
+            return json_encode($e);
+        }
     }
 
 }

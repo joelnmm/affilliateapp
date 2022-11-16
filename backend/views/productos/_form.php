@@ -21,6 +21,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'precio')->textInput(); ?>
 
+    <?= $form->field($model, 'url')->textInput(); ?>
+
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]); ?>
 
     <?= $form->field($model, 'categoria')->dropDownList($categorias, ['prompt' => 'Seleccione Uno' ]); ?>

@@ -36,7 +36,7 @@ class Productos extends \yii\db\ActiveRecord
             [['nombre', 'marca'], 'string', 'max' => 100],
             [['precio'], 'string', 'max' => 50],
             [['imagen'], 'file'],
-            [['descripcion'], 'string', 'max' => 500],
+            [['descripcion', 'url'], 'string', 'max' => 500],
             [['id'], 'unique'],
             [['categoria'], 'string'],
         ];
@@ -55,6 +55,7 @@ class Productos extends \yii\db\ActiveRecord
             'imagen' => 'Imagen',
             'descripcion' => 'Descripcion',
             'categoria' => 'Categoría',
+            'url' => 'Url'
         ];
     }
 }

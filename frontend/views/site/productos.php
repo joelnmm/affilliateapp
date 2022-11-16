@@ -152,28 +152,6 @@
         </div>
     </nav>
 
-    <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="dropdown2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown2">
-                    <li class="dropdown-item" href="#"><a>Action 2 A</a></li>
-                    <li class="dropdown-item" href="#"><a>Action 2 B</a></li>
-                    <li class="dropdown-item" href="#"><a>Action 2 C</a></li>
-                    <li class="dropdown-item dropdown">
-                        <a class="dropdown-toggle" id="dropdown2-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2.1</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown2-1">
-                            <li class="dropdown-item" href="#"><a>Action 2.1 A</a></li>
-                            <li class="dropdown-item" href="#"><a>Action 2.1 B</a></li>
-                            <li class="dropdown-item" href="#"><a>Action 2.1 C</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div> -->
-
-
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container-fluid">
 	    
@@ -182,9 +160,11 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+	        	<li class="nav-item active">
+                    <?= Html::a( 'Computers', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cellphones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="#">Page 1</a>
                         <a class="dropdown-item" href="#">Page 2</a>
@@ -192,9 +172,15 @@
                         <a class="dropdown-item" href="#">Page 4</a>
                     </div>
                 </li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Work</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+	        	<li class="nav-item">
+                    <?= Html::a( 'Headphones', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                </li>
+	        	<li class="nav-item">
+                    <?= Html::a( 'Smart Watches', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                </li>
+	            <li class="nav-item">
+                    <?= Html::a( 'Speakers', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                </li>
 	        </ul>
 	      </div>
         </div>

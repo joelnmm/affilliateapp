@@ -83,13 +83,8 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-       
+    {      
         return Yii::$app->response->redirect(['frontend/web/site/productos']); 
-        // $actualLenguaje = self::ACTUAL_LENGUAJE;
-        // return $this->render('productos',[
-        //     'actualLenguaje' => $actualLenguaje
-        // ]);
     }
 
     /**
@@ -410,6 +405,11 @@ class SiteController extends Controller
 
         return $this->render($view, $params);
 
+    }
+
+    public function actionFilterProducts(){
+
+        return $this->goHome();
     }
 
 }

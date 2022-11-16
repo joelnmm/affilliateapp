@@ -74,8 +74,10 @@ class ProductosController extends Controller
 
         $categorias = [ 
                 'computers' => 'computers', 
-                'speakers' => 'speakers',  
-                'watches' => 'watches'
+                'cellphones' => 'cellphones',  
+                'headphones' => 'headphones',
+                'watches' => 'watches',
+                'speakers' => 'speakers'
             ];
 
         if ($this->request->isPost) {
@@ -124,8 +126,10 @@ class ProductosController extends Controller
         $model = $this->findModel($id);
         $categorias = [ 
             'computers' => 'computers', 
-            'speakers' => 'speakers',  
-            'watches' => 'watches'
+            'cellphones' => 'cellphones',  
+            'headphones' => 'headphones',
+            'watches' => 'watches',
+            'speakers' => 'speakers'
         ];
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -147,7 +151,9 @@ class ProductosController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        S3::eliminarArchivoS3($model->imagen);
+        $model->delete();
 
         return $this->redirect(['index']);
     }
