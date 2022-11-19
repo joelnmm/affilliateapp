@@ -152,7 +152,7 @@ class ProductosController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        S3::eliminarArchivoS3($model->imagen);
+        S3::eliminarArchivoS3($model->imagen); //Removes image from s3 bucket
         $model->delete();
 
         return $this->redirect(['index']);

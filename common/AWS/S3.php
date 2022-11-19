@@ -16,18 +16,23 @@ Use Aws\Credentials\Credentials;
 
 class S3 {
 
-    public static function subirArchivoS3($fileNameProperty,$model) {
-
+    public function getS3Client(){
         $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
         $SecretKey = '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';
         
         $credentials = new Credentials($AccessKey, $SecretKey);
-        $s3Client = new S3Client([
+
+        return new S3Client([
             'region' => 'us-east-1',
             'version' => 'latest',
             'credentials' => $credentials,
         ]);
 
+    }
+
+    public static function subirArchivoS3($fileNameProperty,$model) {
+
+        $s3Client = self::getS3Client();
         $bucketName = 'bittadvise-images';
         $file_content = $_FILES[$model]["tmp_name"]['imagen'];
         // $name = $_FILES[$model]["name"]['imagen'];
@@ -71,16 +76,8 @@ class S3 {
     }
 
     public static function eliminarArchivoS3($filenameUrl){
-        $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
-        $SecretKey = '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';
         
-        $credentials = new Credentials($AccessKey, $SecretKey);
-        $s3Client = new S3Client([
-            'region' => 'us-east-1',
-            'version' => 'latest',
-            'credentials' => $credentials,
-        ]);
-
+        $s3Client = self::getS3Client();
         $bucketName = 'bittadvise-images';
         $file = explode('/',$filenameUrl)[3];
 
