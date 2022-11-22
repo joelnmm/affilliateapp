@@ -16,7 +16,7 @@ Use Aws\Credentials\Credentials;
 
 class S3 {
 
-    public function getS3Client(){
+    public static function getS3Client(){
         $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
         $SecretKey = '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';
         
