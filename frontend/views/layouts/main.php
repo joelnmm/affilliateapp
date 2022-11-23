@@ -241,12 +241,11 @@ body{
         var server = <?php echo json_encode($_SERVER['REQUEST_URI']); ?>;
         var currentUrl = "http://localhost/affilliateapp/frontend/web/site/search";
 
-        console.log('server ', server);
-        if(server.includes('bittadvice')){
+        if(!server.includes('localhost')){
             currentUrl = "http://www.bittadvice.com/frontend/web/site/search";
         }
         console.log('current ', currentUrl)
-        // window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
+        window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
 
     }
 
