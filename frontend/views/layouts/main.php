@@ -50,7 +50,7 @@ body{
 .searchButton {
   width: 40px;
   height: 36px;
-  border: 1px solid #635d5e;
+  border: 0.5px solid #635d5e;
   background: #635d5e;
   text-align: center;
   color: #fff;
@@ -72,7 +72,6 @@ body{
 .wrap{
     left: 65%;
  }
-
 }
 
 /* for movil devices */
@@ -87,6 +86,9 @@ body{
   position: relative;
   display: flex;
   right: 0px;
+}
+.searchButton {
+    padding-right: 10px;
 }
 
 }
