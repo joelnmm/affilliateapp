@@ -293,6 +293,21 @@ class SiteController extends Controller
 
     }
 
+    public function actionSearch(){
+        $query = $_GET[1]['word'];
+        $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
+        $data = Productos::findBySql($sql)->all();
+        $dataArticulos = Articulos::find()->all();
+
+        return $this->render('productos',[
+            'data' => $data,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+        ]);
+
+    }
+
     public function actionArticle(){
 
         $id = $_GET[1]['id'];

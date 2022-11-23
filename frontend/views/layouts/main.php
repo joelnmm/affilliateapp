@@ -9,6 +9,9 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\bootstrap5\ActiveForm;
+use yii\helpers\Url;
+
 
 AppAsset::register($this);
 
@@ -87,6 +90,7 @@ body{
 }
 
 </style>
+
 <?php 
     if(!isset($actualLenguaje)){
         $actualLenguaje = 'English';
@@ -130,21 +134,35 @@ body{
 
     $id = '';
     $view = 'productos';
-    if (str_contains($_SERVER['REQUEST_URI'], 'productos')) { 
+    if (str_contains($_SERVER['REQUEST_URI'], 'productos')
+        || str_contains($_SERVER['REQUEST_URI'], 'search')) { 
         $view = 'productos';
+
+        // echo '<div class="wrap">' . 
+        //         '<div class="search">' . 
+        //             Html::input('text', 'nombre', '', ['class' => 'searchTerm', 
+        //             'placeholder' => 'What are you looking for?', 
+        //             'id' => 'searchBox'
+        //             ]) 
+        //             . 
+        //             Html::submitButton('', ['class' => 'searchButton fa fa-search',
+        //             'onclick' => 'searchProducts($("#searchBox").val())'])
+        //         . '</div>' 
+        //     . '</div>';
+
     ?>
 
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                <button type="submit" class="searchButton">
+                <input id="searchBox" type="text" class="searchTerm" placeholder="What are you looking for?">
+                <button type="submit" class="searchButton" onclick="searchProducts($('#searchBox').val())">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
         </div>
 
-    <?php 
-    } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
+    <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
+
         $id = explode('=',$_SERVER['REQUEST_URI'])[1];
         $view = 'article';
     }?>
@@ -178,14 +196,6 @@ body{
         </div>
     </div>
 
-<script> 
-
-function changeLenguaje(lenguaje){
-    $('#activeLenguaje').prop('inner-html').val(lenguaje);
-}
-
-</script>
-
     <?php
 
     if (Yii::$app->user->isGuest) {
@@ -202,7 +212,7 @@ function changeLenguaje(lenguaje){
     ?>
 </header>
 
-<main role="main" class="flex-shrink-0">
+<main id="body" role="main" class="flex-shrink-0">
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -224,23 +234,29 @@ function changeLenguaje(lenguaje){
 </html>
 
 <script>
+
+    function searchProducts(word){
+        // $('#activeLenguaje').prop('inner-html').val(lenguaje);
+
+        var server = <?php echo json_encode($_SERVER['REQUEST_URI']); ?>;
+        var currentUrl = "http://localhost/affilliateapp/frontend/web/site/search";
+
+        if(server.includes('bittadvice')){
+            currentUrl = "http://www.bittadvice.com/frontend/web/site/search";
+        }
+        window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
+
+    }
+
     function changeLanguajeSpanish(i) {
         console.log('funciona')
 
-        // $.get("http://www.bittadvice.com/frontend/web/index.php/site/lenguaje", function (result, status, xhr) {
         $.get("http://localhost/affilliateapp/frontend/web/index.php/site/lenguaje", function (result, status, xhr) {
                 // var obj = JSON.parse(result);
                 // console.log(obj)
                 if (status == "success") {
                     location.reload();
                     alert(result);
-                    // if (obj.transaccion) {
-                    //     alert('Anulado correctamente');
-                    //     location.reload();
-                    //     // alert('Se genero de manera correcta'); // alert(obj.url); location.href=obj.url; $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" ); //window.open(obj.url) }else{ alert('No se pudo generar, intente más tarde' ); $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" );
-                    // } else {
-                    //     alert('Error al procesar la solicitud 1');
-                    // }
 
                 } else if (status == "error") {//status puede ser también:"success", "notmodified", "error", "timeout", or "parsererror"
                     alert('Error al procesar la solicitud 2');

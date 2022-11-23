@@ -245,29 +245,18 @@
 </html>
 
 <script>
+    var server = <?php echo json_encode($_SERVER['REQUEST_URI']); ?>;
 
-    function viewArticle(){
-        $.get("http://localhost/affilliateapp/frontend/web/index.php/site/article", function (result, status, xhr) {
-                // var obj = JSON.parse(result);
-                // console.log(obj)
-                if (status == "success") {
-                    // location.reload();
-                    console.log("funciona!!")
-                    // if (obj.transaccion) {
-                    //     alert('Anulado correctamente');
-                    //     location.reload();
-                    //     // alert('Se genero de manera correcta'); // alert(obj.url); location.href=obj.url; $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" ); //window.open(obj.url) }else{ alert('No se pudo generar, intente más tarde' ); $( "#loadButton" ).removeClass( "ld ld-ring ld-spin" );
-                    // } else {
-                    //     alert('Error al procesar la solicitud 1');
-                    // }
+    $(document).ready(function() {
 
-                } else if (status == "error") {//status puede ser también:"success", "notmodified", "error", "timeout", or "parsererror"
-                    alert('Error al procesar la solicitud 2');
-                }
-        }).fail(function () {
-            alert('Error al procesar la solicitud 3');
-        });
-    }
+        if(server.includes('search')){
+            $('html,body').animate({
+            scrollTop: $(".grid-title").offset().top},
+            'slow');
+        }
+        
+    });
+
 
     var $maxWidthElement = $('.navbar'),
     maxWidth = $maxWidthElement.width();
