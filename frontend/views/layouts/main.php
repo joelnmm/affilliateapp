@@ -143,7 +143,7 @@ body{
 
     $id = '';
     $view = 'productos';
-    if (str_contains($_SERVER['REQUEST_URI'], 'productos')
+    if (str_contains($_SERVER['REQUEST_URI'], 'product')
         || str_contains($_SERVER['REQUEST_URI'], 'search')) { 
         $view = 'productos';
 

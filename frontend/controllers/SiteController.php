@@ -308,6 +308,23 @@ class SiteController extends Controller
 
     }
 
+    public function actionFilterProduct(){
+        $category = $_GET[1]['category'];
+
+        $data = Productos::find()->where([
+            'categoria' => $category
+        ])->all();
+
+        $dataArticulos = Articulos::find()->all();
+
+        return $this->render('productos',[
+            'data' => $data,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+        ]);
+    }
+
     public function actionArticle(){
 
         $id = $_GET[1]['id'];
@@ -420,11 +437,6 @@ class SiteController extends Controller
 
         return $this->render($view, $params);
 
-    }
-
-    public function actionFilterProducts(){
-
-        return $this->goHome();
     }
 
 }

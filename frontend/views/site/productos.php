@@ -161,25 +161,26 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav m-auto">
 	        	<li class="nav-item active">
-                    <?= Html::a( 'Computers', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                    <?= Html::a( 'Computers', ['site/filter-product', ['category' => 'computers']], ['class' => "nav-link"]); ?>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cellphones</a>
+                <?= Html::a( 'Cellphones', ['site/filter-product', ['category' => 'cellphones']], ['class' => "nav-link"]); ?>
+                    <!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cellphones</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="#">Page 1</a>
                         <a class="dropdown-item" href="#">Page 2</a>
                         <a class="dropdown-item" href="#">Page 3</a>
                         <a class="dropdown-item" href="#">Page 4</a>
-                    </div>
+                    </div> -->
                 </li>
 	        	<li class="nav-item">
-                    <?= Html::a( 'Headphones', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
-                </li>
-	        	<li class="nav-item">
-                    <?= Html::a( 'Smart Watches', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                    <?= Html::a( 'Smart Watches', ['site/filter-product', ['category' => 'watches']], ['class' => "nav-link"]); ?>
                 </li>
 	            <li class="nav-item">
-                    <?= Html::a( 'Speakers', ['site/filter-products', ['target' => 'es']], ['class' => "nav-link"]); ?>
+                    <?= Html::a( 'Speakers', ['site/filter-product', ['category' => 'speakers']], ['class' => "nav-link"]); ?>
+                </li>
+                <li class="nav-item">
+                    <?= Html::a( 'Headphones', ['site/filter-product', ['category' => 'headphones']], ['class' => "nav-link"]); ?>
                 </li>
 	        </ul>
 	      </div>
