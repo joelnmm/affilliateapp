@@ -235,16 +235,21 @@ body{
 
 <script>
 
+    $(document).on('keypress',function(e) {
+        if(e.which == 13 && $('#searchBox').val() !== '') {
+            var word = $('#searchBox').val();
+            searchProducts(word);
+        }
+    });
+
     function searchProducts(word){
-        // $('#activeLenguaje').prop('inner-html').val(lenguaje);
 
         var server = <?php echo json_encode($_SERVER['REQUEST_URI']); ?>;
         var currentUrl = "http://localhost/affilliateapp/frontend/web/site/search";
 
-        if(!server.includes('localhost')){
+        if(!server.includes('affilliateapp')){
             currentUrl = "http://www.bittadvice.com/frontend/web/site/search";
         }
-        console.log('current ', currentUrl)
         window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
 
     }
