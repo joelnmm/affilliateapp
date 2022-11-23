@@ -250,7 +250,7 @@
 
     $(document).ready(function() {
 
-        if(server.includes('search')){
+        if(server.includes('search') || server.includes('filter-product')){
             $('html,body').animate({
             scrollTop: $(".grid-title").offset().top},
             'slow');
