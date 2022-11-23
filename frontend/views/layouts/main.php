@@ -61,11 +61,18 @@ body{
 }
 
 .wrap{
-  width: 20%;
-  position: absolute;
+  width: 250px;
+  position:absolute;
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
+}
+
+@media (min-width: 1800px) {
+.wrap{
+    left: 65%;
+ }
+
 }
 
 /* for movil devices */
@@ -152,21 +159,21 @@ body{
 
     ?>
 
-        <div class="wrap">
-            <div class="search">
-                <input id="searchBox" type="text" class="searchTerm" placeholder="What are you looking for?">
-                <button type="submit" class="searchButton" onclick="searchProducts($('#searchBox').val())">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+    <div class="wrap">
+        <div class="search">
+            <input id="searchBox" type="text" class="searchTerm" placeholder="What are you looking for?">
+            <button type="submit" class="searchButton" onclick="searchProducts($('#searchBox').val())">
+                <i class="fa fa-search"></i>
+            </button>
         </div>
+    </div>
+    </tr>
 
     <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
 
         $id = explode('=',$_SERVER['REQUEST_URI'])[1];
         $view = 'article';
     }?>
-
     <!-- Languaje selector -->
     <div class="nav-wrapper">
         <div class="sl-nav">
