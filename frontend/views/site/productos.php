@@ -11,7 +11,7 @@
     background: #969696;
 }
 .title-container{
-    height: 50px;
+    height: 85px;
     display: flex;
     justify-content: center; /* align horizontal */
     align-items: center;
@@ -225,7 +225,10 @@
                                 <?php echo $row['descripcion'];?>
                             </div>
                             <div class="product-action">
-                                <a href=""><i class="fa fa-eye"></i> See product</a>
+                                <a href="<?php echo $row['url'];?>">
+                                    <i class="fa fa-eye"></i> 
+                                    See product
+                                </a>
                             </div>
                         </div>
                     </div>
