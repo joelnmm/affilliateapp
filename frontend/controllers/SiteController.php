@@ -145,7 +145,7 @@ class SiteController extends Controller
         $paragraph = 'BitAdvice is a site focused on sharing the most interesting stuff that you can buy online. We are constantly searching
         for cool things online so that you can see them all in one place.<br><br>The products listed on this site may receive a commission for product referral, this is a small help to keep BitAdvice
         as cool as always, but this is not the main motivation, our goal is to create a helpful place where people can find items
-        for their needs. We appreciate your visit to our web site and hope we see you around again.' . PHP_EOL . 'Joel Males';
+        for their needs. We appreciate your visit to our web site and hope we see you around again. <br> <br> Joel Males';
         $title2 = 'Contact Us';
         $paragraph2 = 'If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.';
 
