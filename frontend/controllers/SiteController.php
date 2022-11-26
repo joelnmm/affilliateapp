@@ -283,6 +283,8 @@ class SiteController extends Controller
 
         $data = Productos::find()->all();
         $dataArticulos = Articulos::find()->all();
+        shuffle($dataArticulos);
+        shuffle($data);
 
         return $this->render('productos',[
             'data' => $data,
