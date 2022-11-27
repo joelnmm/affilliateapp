@@ -62,8 +62,6 @@ class UtilServices
             //     sleep(1);
             // }
 
-            var_dump($translatedArr);
-
             if(sizeof($dataArticulos) > 1){ //Gets the next article
 
                 foreach($dataArticulos as $articulo){
