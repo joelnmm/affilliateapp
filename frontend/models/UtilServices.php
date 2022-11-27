@@ -51,14 +51,18 @@ class UtilServices
             $model->titulo = self::actionTranslate($model->titulo, $target);
             $model->subtitulo = self::actionTranslate($model->subtitulo, $target);
             $model->fecha = self::actionTranslate($model->fecha, $target);
+            $model->texto = self::actionTranslate($model->texto, $target);
 
-            $arrWords = explode('<p>', $model->texto);
-            $translatedArr = [];
+            // $arrParragraphs= explode('<p>', $model->texto);
+            // $translatedArr = [];
 
-            foreach($arrWords as $word){
-                $word = self::actionTranslate($word, $target);
-                array_push($translatedArr, $word);
-            }
+            // foreach($arrParragraphs as $parragraph){
+            //     $parragraph = self::actionTranslate($parragraph, $target);
+            //     array_push($translatedArr, $parragraph);
+            //     sleep(1);
+            // }
+
+            var_dump($translatedArr);
 
             if(sizeof($dataArticulos) > 1){ //Gets the next article
 
