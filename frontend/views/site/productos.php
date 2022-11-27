@@ -211,16 +211,21 @@
                             </div> -->
                         </div>
                         <div class="product-content">
+
                             <div class="product-title title-container">
-                                <h2><a href=""><?php echo $row['nombre'];?></a></h2>
+                                <h2>
+                                    <a href="<?php echo $row['url'];?>">
+                                    <?php echo $row['nombre'];?>
+                                    </a>
+                                </h2>
                             </div>
-                            <!-- <div class="product-ratting">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div> -->
+
+                            <div class="product-ratting">
+                                <?php for($i=0; $i<5; $i++) {?>
+                                    <i class="fa fa-star"></i>
+                                <?php }?>
+                                    <!-- <i class="fa fa-star-o"></i> -->
+                            </div>
                             <div class="product-description">
                                 <?php echo $row['descripcion'];?>
                             </div>
