@@ -180,22 +180,24 @@ body{
     <div class="nav-wrapper">
         <div class="sl-nav">
             <ul>
-            <li><b id="activeLenguaje">English</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <li><b id="activeLenguaje">Languaje</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <ul>
 
                 <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
                     <span class="active">
-                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es', 'view' => $view, 'id' => $id]], [
-                                    'class' => "thumbnail", 
+                    <?= Html::a( 'Spanish', ['', ['target' => 'es', 'view' => $view, 'id' => $id]], [
+                                    'class' => "thumbnail",
+                                    'onclick' => 'changeLanguaje("Spanish")' 
                                 ]); ?>
                     </span>
                 </li>
 
                 <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
                     <span>
-                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en', 'view' => $view, 'id' => $id]], [
+                    <?= Html::a( 'English', ['', ['target' => 'en', 'view' => $view, 'id' => $id]], [
                                     'class' => "thumbnail", 
+                                    'onclick' => 'changeLanguaje("English")'
                                 ]); ?>
                     </span>
                 </li>
@@ -245,8 +247,8 @@ body{
 <script>
 
     $(document).on('keypress',function(e) {
-        if(e.which == 13 && $('#searchBox').val() !== '') {
-            var word = $('#searchBox').val();
+        var word = $('#searchBox').val();
+        if(e.which == 13 && word !== '') {
             searchProducts(word);
         }
     });
@@ -263,24 +265,9 @@ body{
 
     }
 
-    function changeLanguajeSpanish(i) {
-        console.log('funciona')
-
-        $.get("http://localhost/affilliateapp/frontend/web/index.php/site/lenguaje", function (result, status, xhr) {
-                // var obj = JSON.parse(result);
-                // console.log(obj)
-                if (status == "success") {
-                    location.reload();
-                    alert(result);
-
-                } else if (status == "error") {//status puede ser también:"success", "notmodified", "error", "timeout", or "parsererror"
-                    alert('Error al procesar la solicitud 2');
-                }
-        }).fail(function () {
-            alert('Error al procesar la solicitud 3');
-        });
-
-        
+    function changeLanguaje(languaje) {
+        console.log(languaje);
+        // $('#activeLenguaje').html(languaje);
     }
 
 </script>
