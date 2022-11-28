@@ -186,7 +186,7 @@ body{
 
                 <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
                     <span class="active">
-                    <?= Html::a( 'Spanish', ['', ['target' => 'es', 'view' => $view, 'id' => $id]], [
+                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es', 'view' => $view, 'id' => $id]], [
                                     'class' => "thumbnail",
                                     'onclick' => 'changeLanguaje("Spanish")' 
                                 ]); ?>
@@ -195,7 +195,7 @@ body{
 
                 <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
                     <span>
-                    <?= Html::a( 'English', ['', ['target' => 'en', 'view' => $view, 'id' => $id]], [
+                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en', 'view' => $view, 'id' => $id]], [
                                     'class' => "thumbnail", 
                                     'onclick' => 'changeLanguaje("English")'
                                 ]); ?>
