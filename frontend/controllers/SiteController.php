@@ -18,6 +18,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\UtilServices;
+use PhpMyAdmin\Twig\UtilExtension;
 use \Statickidz\GoogleTranslate;
 
 /**
@@ -280,22 +281,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionProductos(){
-
-        $data = Productos::find()->all();
-        $dataArticulos = Articulos::find()->all();
-        shuffle($dataArticulos);
-        shuffle($data);
- 
-        return $this->render('productos',[
-            'data' => $data,
-            'dataArticulos' => $dataArticulos,
-            'titulo' => self::TITULO_PRODUCTOS,
-            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
-        ]);
-
-    }
-
     public function actionSearch(){
         $query = $_GET[1]['word'];
         $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
@@ -355,47 +340,57 @@ class SiteController extends Controller
 
     }
 
-    public function actionLenguaje(){
+    public function actionProductos2(){
 
-        $file = file_get_contents('../views/site/productos.php');
-
-        $data = [
-            'q' => $file,
-            'target' => 'es',
-            'source' => 'en'
-        ];
-        $query = http_build_query($data);
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => $query,
-            CURLOPT_HTTPHEADER => [
-                "Accept-Encoding: application/gzip",
-                "X-RapidAPI-Host: google-translate1.p.rapidapi.com",
-                "X-RapidAPI-Key: 03188aa0c3mshbe52069f410589bp181097jsn6880a762a0d8",
-                "content-type: application/x-www-form-urlencoded"
-            ],
+        $data = Productos::find()->all();
+        $dataArticulos = Articulos::find()->all();
+        shuffle($dataArticulos);
+        shuffle($data);
+ 
+        return $this->render('productos',[
+            'data' => $data,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
         ]);
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
+    }
 
-        curl_close($curl);
+    public function actionProductos(){
 
-        if ($err) {
-            return "cURL Error #:" . $err;
-        } else {
-            return $response;
+        $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
+        $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
+        $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+
+        $combined = [];
+        for($i=0; $i<sizeof($dataLaptops); $i++){
+            array_push($combined, 
+                $dataLaptops[$i], 
+                $dataCellPhones[$i], 
+                $smartWatch[$i]
+            );
         }
+
+        $items = [];
+        foreach($combined as $producto){
+            $itm = [
+                "imagen" => $producto["image"]["imageUrl"],
+                "precio" => $producto["price"]["value"],
+                "nombre" => $producto["title"],
+                "descripcion" => $producto["title"],
+                "url" => $producto["itemWebUrl"]
+            ];
+            array_push($items, $itm);
+        }
+
+        $dataArticulos = Articulos::find()->all();
+ 
+        return $this->render('productos',[
+            'data' => $items,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+        ]);        
     }
 
     /**
@@ -430,11 +425,11 @@ class SiteController extends Controller
 
     public function actionTranslatedView(){
 
-        // return self::actionProductos();
-
         $target = $_GET[1]['target'];
         $view = $_GET[1]['view'];
         $id = $_GET[1]['id'];
+
+        return
 
         $params = UtilServices::translateByView($target, $view, $id, self::TITULO_PRODUCTOS, self::SUBTITULO_PRODUCTOS);
 

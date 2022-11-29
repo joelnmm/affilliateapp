@@ -205,7 +205,6 @@
                         <div class="product-img">
                             <!-- <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/> -->
                             <img src="<?php echo $row['imagen'];?>" alt="Product Image"/>
-
                             <div class="product-price">
                                 <span>$<?php echo $row['precio'];?></span>
                             </div>
