@@ -362,6 +362,10 @@ class SiteController extends Controller
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
 
+        if(!isset($dataLaptops[0]["title"])){
+            return [];
+        }
+
         $combined = [];
         for($i=0; $i<sizeof($dataLaptops); $i++){
             array_push($combined, 
@@ -374,7 +378,7 @@ class SiteController extends Controller
         $items = [];
         foreach($combined as $producto){
             $itm = [
-                "imagen" => $producto["image"]["imageUrl"],
+                "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
                 "precio" => $producto["price"]["value"],
                 "nombre" => $producto["title"],
                 "descripcion" => $producto["title"],
