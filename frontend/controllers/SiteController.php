@@ -361,33 +361,33 @@ class SiteController extends Controller
         $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+        $dataArticulos = Articulos::find()->all();
 
         if(!isset($dataLaptops[0]["title"])){
-            return [];
-        }
+            $items = [];
 
-        $combined = [];
-        for($i=0; $i<sizeof($dataLaptops); $i++){
-            array_push($combined, 
-                $dataLaptops[$i], 
-                $dataCellPhones[$i], 
-                $smartWatch[$i]
-            );
+        }else{
+            $combined = [];
+            for($i=0; $i<sizeof($dataLaptops); $i++){
+                array_push($combined, 
+                    $dataLaptops[$i], 
+                    $dataCellPhones[$i], 
+                    $smartWatch[$i]
+                );
+            }
+    
+            $items = [];
+            foreach($combined as $producto){
+                $itm = [
+                    "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
+                    "precio" => $producto["price"]["value"],
+                    "nombre" => $producto["title"],
+                    "descripcion" => $producto["title"],
+                    "url" => $producto["itemWebUrl"]
+                ];
+                array_push($items, $itm);
+            }
         }
-
-        $items = [];
-        foreach($combined as $producto){
-            $itm = [
-                "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
-                "precio" => $producto["price"]["value"],
-                "nombre" => $producto["title"],
-                "descripcion" => $producto["title"],
-                "url" => $producto["itemWebUrl"]
-            ];
-            array_push($items, $itm);
-        }
-
-        $dataArticulos = Articulos::find()->all();
  
         return $this->render('productos',[
             'data' => $items,
@@ -395,6 +395,27 @@ class SiteController extends Controller
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
         ]);        
+    }
+
+    public function actionGetApi(){
+
+        $uri = 'https://api.ebay.com/identity/v1/oauth2/token';
+
+        $parameters = [
+            'grant_type' => 'authorization_code',
+            'code' => urldecode('v%5E1.1%23i%5E1%23r%5E1%23p%5E3%23I%5E3%23f%5E0%23t%5EUl41Xzg6RUZDRDMyQUUzMzY4N0NCQzUxMThFMTBGQkZBOUE0OEJfMl8xI0VeMjYw'),
+            'redirect_uri' => 'Joel_Males-JoelMale-bittad-fbeyxtn'
+        ];
+
+        $encoded = base64_encode('JoelMale-bittadvi-PRD-aa26b07b1-076faaeb:PRD-a26b07b190be-e520-44c7-82a1-ed5d');
+        $headers = [
+            "Authorization: Basic " . $encoded,
+            "content-type: application/x-www-form-urlencoded"
+        ];
+
+        $response = UtilServices::getApi($uri,'POST',$headers,$parameters);
+        
+        return $response;
     }
 
     /**
