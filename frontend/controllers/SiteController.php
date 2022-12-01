@@ -360,8 +360,8 @@ class SiteController extends Controller
     public function actionProductos(){
 
         $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
-        $dataMacbookPro = UtilServices::browseItemsEbayApi('macbookpro m1', '6');
-        $dataMacbookAir = UtilServices::browseItemsEbayApi('macbookair m1', '6');
+        $dataMacbookPro = UtilServices::browseItemsEbayApi('macbookpro', '6');
+        $dataMacbookAir = UtilServices::browseItemsEbayApi('macbookair', '6');
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
 
