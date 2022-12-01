@@ -225,9 +225,11 @@
                                 <?php }?>
                                     <!-- <i class="fa fa-star-o"></i> -->
                             </div>
-                            <div class="product-description">
-                                <?php echo $row['descripcion'];?>
-                            </div>
+                            <?php if(isset($row['descripcion'])){ ?>
+                                <div class="product-description">
+                                    <?php echo $row['descripcion'];?>
+                                </div>
+                            <?php } ?>
                             <div class="product-action">
                                 <a href="<?php echo $row['url'];?>">
                                     <i class="fa fa-eye"></i> 

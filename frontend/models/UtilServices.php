@@ -121,6 +121,17 @@ class UtilServices
         $response = self::getApi($uri,'GET',$headers);
 
         if(isset($response["itemSummaries"])){
+
+            // $productList = [];
+            // foreach($response["itemSummaries"] as $producto){
+            //     $extraInfo = self::getApi($producto["itemHref"],'GET',$headers);
+            //     if(isset($extraInfo["subtitle"])){
+            //         $producto += ['description' => $extraInfo["subtitle"]];
+            //         array_push($productList, $producto);
+            //     }
+            // }
+            // return $productList;
+
             return $response["itemSummaries"];
 
         }else{

@@ -360,8 +360,11 @@ class SiteController extends Controller
     public function actionProductos(){
 
         $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
+        $dataMacbookPro = UtilServices::browseItemsEbayApi('macbookpro retina', '6');
+        $dataMacbookAir = UtilServices::browseItemsEbayApi('macbookair m1', '6');
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+
         $dataArticulos = Articulos::find()->all();
         $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
 
@@ -369,14 +372,13 @@ class SiteController extends Controller
             $items = [];
 
         }else{
-            $combined = [];
-            for($i=0; $i<sizeof($dataLaptops); $i++){
-                array_push($combined, 
-                    $dataLaptops[$i], 
-                    $dataCellPhones[$i], 
-                    $smartWatch[$i]
-                );
-            }
+            $combined = array_merge(
+                $dataLaptops, 
+                $dataCellPhones, 
+                $smartWatch,
+                $dataMacbookPro,
+                $dataMacbookAir
+            );
     
             $items = [];
             foreach($combined as $producto){
@@ -384,7 +386,7 @@ class SiteController extends Controller
                     "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
                     "precio" => $producto["price"]["value"],
                     "nombre" => $producto["title"],
-                    "descripcion" => $producto["title"],
+                    // "descripcion" => $producto["description"],
                     "url" => $producto["itemWebUrl"] . $affiliateLink->parValor
                 ];
                 array_push($items, $itm);

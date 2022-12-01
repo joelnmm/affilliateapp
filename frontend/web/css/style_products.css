@@ -137,10 +137,10 @@ h6 {
 .product-grid.grid-3 .product-price span:last-child {
     display: inline-block;
     float: right;
-    width: 115px;
+    width: 125px;
     height: 100px;
     margin-right: -50px;
-    padding: 60px 0 0 10px;
+    padding: 60px 0 0 15px;
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
