@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use app\models\Parametros;
 use common\models\Articulos;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -362,8 +363,8 @@ class SiteController extends Controller
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
         $dataArticulos = Articulos::find()->all();
+        $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
 
-        // return json_encode($dataLaptops);
         if(!isset($dataLaptops[0]["title"])){
             $items = [];
 
@@ -384,7 +385,7 @@ class SiteController extends Controller
                     "precio" => $producto["price"]["value"],
                     "nombre" => $producto["title"],
                     "descripcion" => $producto["title"],
-                    "url" => $producto["itemWebUrl"]
+                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor
                 ];
                 array_push($items, $itm);
             }

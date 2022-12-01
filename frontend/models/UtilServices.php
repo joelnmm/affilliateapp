@@ -109,9 +109,7 @@ class UtilServices
         //Browse api
         $uri = 'https://api.ebay.com/buy/browse/v1/item_summary/search?q=' . $query . '&limit=' . $limit;
 
-        $token = Parametros::findOne([
-            'parNombre' => 'ebayApplicationToken'
-        ]);
+        $token = Parametros::findOne(['parNombre' => 'ebayApplicationToken']);
 
         $headers = [
             "Authorization: Bearer " . $token->parValor,
