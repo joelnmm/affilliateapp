@@ -20,12 +20,13 @@ class UtilServices
     {
         if($view == 'productos'){
 
-            $data = Productos::find()->all();
+            $data = UtilServices::getEbayProductData();
             $dataArticulos = Articulos::find()->all();
 
             //TRANSLATES TITLE AND SUBTITLE
             $titulo = self::actionTranslate($titulo, $target);
-            $subtitulo = self::actionTranslate($subtitulo, $target);;
+            $subtitulo = self::actionTranslate($subtitulo, $target);
+            $subtituloProducto = "Today's choice";
 
             foreach($dataArticulos as $articulo){ //TRANSLATES ARTICLES
                 $articulo->titulo = self::actionTranslate($articulo->titulo, $target);
@@ -33,16 +34,19 @@ class UtilServices
                 $articulo->fecha = self::actionTranslate($articulo->fecha, $target);
             }
 
-            foreach($data as $producto){ // TRANSLATE PRODUCTS
-                $producto->nombre = self::actionTranslate($producto->nombre, $target);
-                $producto->descripcion = self::actionTranslate($producto->descripcion, $target);
-            }
+            // $items = [];
+            // foreach($data as $producto){ // TRANSLATE PRODUCTS
+            //     $producto["nombre"] = self::actionTranslate($producto["nombre"], $target);
+            //     array_push($items, $producto);
+            //     // $producto->descripcion = self::actionTranslate($producto->descripcion, $target);
+            // }
 
             return [
                 'data' => $data,
                 'dataArticulos' => $dataArticulos,
                 'titulo' => $titulo,
                 'subtitulo' =>  $subtitulo,
+                'subtituloProducto' => $subtituloProducto
             ];
         
         }elseif($view == 'article'){
@@ -112,10 +116,10 @@ class UtilServices
         $token = Parametros::findOne(['parNombre' => 'ebayApplicationToken']);
 
         $headers = [
-            "Authorization: Bearer " . $token->parValor,
-            "Accept-Encoding: application/json",
-            "X-EBAY-C-MARKETPLACE-ID: EBAY_US",
-            "X-EBAY-C-ENDUSERCTX: affiliateCampaignId=<ePNCampaignId>,affiliateReferenceId=<referenceId>",
+            "Authorization:Bearer " . $token->parValor,
+            "Accept-Encoding:application/json",
+            "X-EBAY-C-MARKETPLACE-ID:EBAY_US",
+            "X-EBAY-C-ENDUSERCTX:affiliateCampaignId=<ePNCampaignId>,affiliateReferenceId=<referenceId>",
         ];
 
         $response = self::getApi($uri,'GET',$headers);
@@ -172,7 +176,7 @@ class UtilServices
         return $response;
     }
 
-    public static function getApi($uri, $type,$httpheaders,$postFields=[]){
+    public static function getApi($uri,$type,$httpheaders,$postFields=[]){
 
         $query = http_build_query($postFields);
         $curl = curl_init();
@@ -212,9 +216,56 @@ class UtilServices
         if ($err) {
             return "cURL Error #:" . $err;
         } else {
-            $response = json_decode($response, true);
-            return $response;
+            if($response === 'Bad Request'){
+                return $response;
+            }else{
+                $response = json_decode($response, true);
+                return $response;
+            }
         }
 
+    }
+
+
+    public static function getEbayProductData(){
+
+        $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
+        $dataMacbookPro = UtilServices::browseItemsEbayApi('macbookpro+m1', '6');
+        $dataMacbookAir = UtilServices::browseItemsEbayApi('macbookair+m1', '6');
+        $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '10');
+        $dataIphones13ProMax = UtilServices::browseItemsEbayApi('iphone13+pro+max', '5');
+        $dataIphones12Pro = UtilServices::browseItemsEbayApi('iphone12+pro', '5');
+        $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+
+        $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
+
+        if(!isset($dataLaptops[0]["title"])){
+            $items = [];
+
+        }else{
+            $combined = array_merge(
+                $dataLaptops, 
+                $dataCellPhones, 
+                $smartWatch,
+                $dataMacbookPro,
+                $dataMacbookAir,
+                $dataIphones13ProMax,
+                $dataIphones12Pro
+            );
+    
+            $items = [];
+            foreach($combined as $producto){
+                $itm = [
+                    "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
+                    "precio" => $producto["price"]["value"],
+                    "nombre" => $producto["title"],
+                    // "descripcion" => $producto["description"],
+                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor
+                ];
+                array_push($items, $itm);
+            }
+        }
+
+        return $items;
     }
 }

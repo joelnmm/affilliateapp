@@ -284,12 +284,21 @@ class SiteController extends Controller
 
     public function actionSearch(){
         $query = $_GET[1]['word'];
+
         $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
-        $data = Productos::findBySql($sql)->all();
+        $dataSql = Productos::findBySql($sql)->all();
         $dataArticulos = Articulos::find()->all();
 
+        $items = UtilServices::getEbayProductData();
+        $dataApi = [];
+        foreach($items as $product) {
+            if (str_contains(strtolower($product["nombre"]), strtolower($query))){
+                array_push($dataApi, $product);
+            }
+        }
+
         return $this->render('productos',[
-            'data' => $data,
+            'data' => $dataApi,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
@@ -359,45 +368,16 @@ class SiteController extends Controller
 
     public function actionProductos(){
 
-        $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '20');
-        $dataMacbookPro = UtilServices::browseItemsEbayApi('macbookpro', '6');
-        $dataMacbookAir = UtilServices::browseItemsEbayApi('macbookair', '6');
-        $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '20');
-        $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
-
+        $items = UtilServices::getEbayProductData();
         $dataArticulos = Articulos::find()->all();
-        $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
-
-        if(!isset($dataLaptops[0]["title"])){
-            $items = [];
-
-        }else{
-            $combined = array_merge(
-                $dataLaptops, 
-                $dataCellPhones, 
-                $smartWatch,
-                $dataMacbookPro,
-                $dataMacbookAir
-            );
-    
-            $items = [];
-            foreach($combined as $producto){
-                $itm = [
-                    "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
-                    "precio" => $producto["price"]["value"],
-                    "nombre" => $producto["title"],
-                    // "descripcion" => $producto["description"],
-                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor
-                ];
-                array_push($items, $itm);
-            }
-        }
- 
+        $subtituloProducto = "Today's choice";
+        
         return $this->render('productos',[
             'data' => $items,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+            'subtituloProducto' => $subtituloProducto
         ]);        
     }
 
@@ -436,8 +416,6 @@ class SiteController extends Controller
         $target = $_GET[1]['target'];
         $view = $_GET[1]['view'];
         $id = $_GET[1]['id'];
-
-        return
 
         $params = UtilServices::translateByView($target, $view, $id, self::TITULO_PRODUCTOS, self::SUBTITULO_PRODUCTOS);
 

@@ -190,7 +190,7 @@
     <!---------- Product card begin ------------>
     <body>
         <div class="grid-title">
-            <h2>Today's choice</h2>
+            <h2><?php echo $subtituloProducto ?></h2>
         </div>
 
         <div class="product-grid grid-3">
