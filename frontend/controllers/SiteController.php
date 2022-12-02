@@ -30,6 +30,7 @@ class SiteController extends Controller
 
     public const TITULO_PRODUCTOS ='Explore';
     public const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
+    public const SUBTITULO_PRODUCTOS_GRID = 'The most interesting items in technology these days';
     public const ACTUAL_LENGUAJE = 'English';
 
     /**
@@ -302,6 +303,7 @@ class SiteController extends Controller
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);
 
     }
@@ -320,6 +322,7 @@ class SiteController extends Controller
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);
     }
 
@@ -362,6 +365,7 @@ class SiteController extends Controller
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);
 
     }
@@ -370,14 +374,13 @@ class SiteController extends Controller
 
         $items = UtilServices::getEbayProductData();
         $dataArticulos = Articulos::find()->all();
-        $subtituloProducto = "Today's choice";
         
         return $this->render('productos',[
             'data' => $items,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
-            'subtituloProducto' => $subtituloProducto
+            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);        
     }
 

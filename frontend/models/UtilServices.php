@@ -26,7 +26,7 @@ class UtilServices
             //TRANSLATES TITLE AND SUBTITLE
             $titulo = self::actionTranslate($titulo, $target);
             $subtitulo = self::actionTranslate($subtitulo, $target);
-            $subtituloProducto = "Today's choice";
+            $subtituloProducto = self::actionTranslate("Today's choice", $target);
 
             foreach($dataArticulos as $articulo){ //TRANSLATES ARTICLES
                 $articulo->titulo = self::actionTranslate($articulo->titulo, $target);
