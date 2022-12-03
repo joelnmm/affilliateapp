@@ -236,7 +236,7 @@ body{
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-start">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-        <p class="float-end"><?= Yii::powered() ?></p>
+        <p class="float-end"><?= Yii::powered() ?> & <img src="@web/../../../../frontend/web/logos/LOGO_VS1.1.PNG" height="30px" width="30px"></p>
     </div>
 </footer>
 
