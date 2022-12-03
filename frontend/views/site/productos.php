@@ -167,6 +167,9 @@ use yii\bootstrap5\Html;
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <?= Html::a( 'All', ['site/filter-product', ['category' => UtilServices::COMPUTERS_CATEGORY]], ['class' => "dropdown-item"]); ?>
                         <?= Html::a( 'Apple Macbook', ['site/filter-product', ['category' => UtilServices::APPLE_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Condition: new', ['site/filter-product', ['category' => UtilServices::COMPUTERS_NEW_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Condition: used', ['site/filter-product', ['category' => UtilServices::COMPUTERS_USED_CATEGORY]], ['class' => "dropdown-item"]); ?>
+
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -174,6 +177,8 @@ use yii\bootstrap5\Html;
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <?= Html::a( 'All', ['site/filter-product', ['category' => UtilServices::CELLPHONES_CATEGORY]], ['class' => "dropdown-item"]); ?>
                         <?= Html::a( 'Apple Iphone', ['site/filter-product', ['category' => UtilServices::APPLE_IPHONE_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Condition: new', ['site/filter-product', ['category' => UtilServices::CELLPHONES_NEW_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Condition: used', ['site/filter-product', ['category' => UtilServices::CELLPHONES_USED_CATEGORY]], ['class' => "dropdown-item"]); ?>
                     </div>
                 </li>
 	        	<li class="nav-item">

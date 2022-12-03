@@ -283,6 +283,33 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionArticle(){
+
+        $id = $_GET[1]['id'];
+        $model = Articulos::findOne(['id' => $id]);
+        $dataArticulos = Articulos::find()->all();
+
+        if(sizeof($dataArticulos) > 1){ //Gets the next article
+
+            foreach($dataArticulos as $articulo){
+                if($articulo->id != $model->id){
+                    $nextArticle = $articulo;
+                }
+            }
+
+            return $this->render('article',[
+                'model' => $model,
+                'nextArticle' => $nextArticle,
+            ]);
+        }
+
+
+        return $this->render('article',[
+            'model' => $model
+        ]);
+
+    }
+
     public function actionSearch(){
         $query = $_GET[1]['word'];
 
@@ -334,34 +361,21 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionArticle(){
+    public function actionProductos(){
 
-        $id = $_GET[1]['id'];
-        $model = Articulos::findOne(['id' => $id]);
+        $items = UtilServices::getEbayProductData();
         $dataArticulos = Articulos::find()->all();
-
-        if(sizeof($dataArticulos) > 1){ //Gets the next article
-
-            foreach($dataArticulos as $articulo){
-                if($articulo->id != $model->id){
-                    $nextArticle = $articulo;
-                }
-            }
-
-            return $this->render('article',[
-                'model' => $model,
-                'nextArticle' => $nextArticle,
-            ]);
-        }
-
-
-        return $this->render('article',[
-            'model' => $model
-        ]);
-
+        
+        return $this->render('productos',[
+            'data' => $items,
+            'dataArticulos' => $dataArticulos,
+            'titulo' => self::TITULO_PRODUCTOS,
+            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
+            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
+        ]);        
     }
 
-    public function actionProductos2(){
+    public function actionProductosSQL(){
 
         $data = Productos::find()->all();
         $dataArticulos = Articulos::find()->all();
@@ -376,20 +390,6 @@ class SiteController extends Controller
             'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);
 
-    }
-
-    public function actionProductos(){
-
-        $items = UtilServices::getEbayProductData();
-        $dataArticulos = Articulos::find()->all();
-        
-        return $this->render('productos',[
-            'data' => $items,
-            'dataArticulos' => $dataArticulos,
-            'titulo' => self::TITULO_PRODUCTOS,
-            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
-            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
-        ]);        
     }
 
     /**
