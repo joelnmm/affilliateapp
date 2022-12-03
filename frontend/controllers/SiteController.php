@@ -30,7 +30,7 @@ class SiteController extends Controller
 
     public const TITULO_PRODUCTOS ='Explore';
     public const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
-    public const SUBTITULO_PRODUCTOS_GRID = 'The most interesting items in technology these days';
+    public const SUBTITULO_PRODUCTOS_GRID = "Today's Choice";
     public const ACTUAL_LENGUAJE = 'English';
 
     /**
@@ -311,14 +311,22 @@ class SiteController extends Controller
     public function actionFilterProduct(){
         $category = $_GET[1]['category'];
 
-        $data = Productos::find()->where([
+        $dataSql = Productos::find()->where([
             'categoria' => $category
         ])->all();
 
         $dataArticulos = Articulos::find()->all();
 
+        $items = UtilServices::getEbayProductData();
+        $dataApi = [];
+        foreach($items as $product) {
+            if (in_array($category, $product["categoria"])){
+                array_push($dataApi, $product);
+            }
+        }
+
         return $this->render('productos',[
-            'data' => $data,
+            'data' => $dataApi,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,

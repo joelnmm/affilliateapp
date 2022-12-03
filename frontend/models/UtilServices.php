@@ -16,6 +16,15 @@ use function PHPUnit\Framework\isEmpty;
  */
 class UtilServices 
 {
+    public const COMPUTERS_CATEGORY = 'computers';
+    public const CELLPHONES_CATEGORY = 'cellphones';
+    public const SMARTWATCHES_CATEGORY = 'smartwatches';
+    public const SPEAKERS_CATEGORY = 'speakers';
+    public const HEADPHONES_CATEGORY = 'headphones';
+    public const APPLE_CATEGORY = 'apple';
+    public const APPLE_IPHONE_CATEGORY = 'apple_iphone';
+    public const APPLE_LAPTOP_CATEGORY = 'apple_laptop';
+
     public static function translateByView($target, $view, $id, $titulo, $subtitulo)
     {
         if($view == 'productos'){
@@ -243,6 +252,28 @@ class UtilServices
             $items = [];
 
         }else{
+            foreach($dataLaptops as $key => $item){
+                $dataLaptops[$key] += ["category" => [self::COMPUTERS_CATEGORY]];
+            }
+            foreach($dataMacbookPro as $key => $item){
+                $dataMacbookPro [$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY]];
+            }
+            foreach($dataMacbookAir as $key => $item){
+                $dataMacbookAir[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY]];
+            }
+            foreach($dataCellPhones as $key => $item){
+                $dataCellPhones[$key] += ["category" => [self::CELLPHONES_CATEGORY]];
+            }
+            foreach($dataIphones13ProMax as $key => $item){
+                $dataIphones13ProMax[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY]];
+            }
+            foreach($dataIphones12Pro as $key => $item){
+                $dataIphones12Pro[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY]];
+            }
+            foreach($smartWatch as $key => $item){
+                $smartWatch[$key] += ["category" => [self::SMARTWATCHES_CATEGORY]];
+            }
+
             $combined = array_merge(
                 $dataLaptops, 
                 $dataCellPhones, 
@@ -260,7 +291,8 @@ class UtilServices
                     "precio" => $producto["price"]["value"],
                     "nombre" => $producto["title"],
                     // "descripcion" => $producto["description"],
-                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor
+                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor,
+                    "categoria" => $producto["category"]
                 ];
                 array_push($items, $itm);
             }
