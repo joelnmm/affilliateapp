@@ -19,6 +19,8 @@ class UtilServices
     //computers categories
     public const COMPUTERS_CATEGORY = 'computers';
     public const APPLE_LAPTOP_CATEGORY = 'apple_laptop';
+    public const HP_LAPTOP_CATEGORY = 'hp_laptop';
+    public const ASUS_LAPTOP_CATEGORY = 'asus_laptop';
     public const COMPUTERS_NEW_CATEGORY = 'computers_new';
     public const COMPUTERS_USED_CATEGORY = 'computers_used';
 
@@ -158,23 +160,26 @@ class UtilServices
 
     public static function getEbayProductData(){
 
-        $dataLaptops = UtilServices::browseItemsEbayApi('laptops', '10');
+        $dataLaptopsHp = UtilServices::browseItemsEbayApi('Hp+laptop', '10', '200..2000', 'NEW');
+        $dataLaptopsAsus = UtilServices::browseItemsEbayApi('Asus+laptop', '10', '200..2000', 'NEW');
         $dataMacbookNew = UtilServices::browseItemsEbayApi('macbook', '10','700..2000','NEW');
         $dataMacbookUsed = UtilServices::browseItemsEbayApi('macbook', '10','300..1000','USED');
         $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '10');
         $dataIphonesNew = UtilServices::browseItemsEbayApi('iphone', '10','600..1500','NEW');
         $dataIphonesUsed = UtilServices::browseItemsEbayApi('iphone', '10', '300..9000','USED');
-
+        $dataSpeakersNew = UtilServices::browseItemsEbayApi('portable+speakers', '10', '50..500','NEW');
+        $dataHeadphonesNew = UtilServices::browseItemsEbayApi('wireless+headphones', '10', '20..500','NEW');
         $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
 
-        $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
-
-        if(!isset($dataLaptops[0]["title"])){
+        if(!isset($dataLaptopsHp[0]["title"])){
             $items = [];
 
         }else{
-            foreach($dataLaptops as $key => $item){
-                $dataLaptops[$key] += ["category" => [self::COMPUTERS_CATEGORY]];
+            foreach($dataLaptopsHp as $key => $item){
+                $dataLaptopsHp[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::HP_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
+            }
+            foreach($dataLaptopsAsus as $key => $item){
+                $dataLaptopsAsus[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::ASUS_LAPTOP_CATEGORY ,self::COMPUTERS_NEW_CATEGORY]];
             }
             foreach($dataMacbookNew as $key => $item){
                 $dataMacbookNew[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
@@ -191,21 +196,31 @@ class UtilServices
             foreach($dataIphonesUsed as $key => $item){
                 $dataIphonesUsed[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY, self::CELLPHONES_USED_CATEGORY]];
             }
+            foreach($dataSpeakersNew as $key => $item){
+                $dataSpeakersNew[$key] += ["category" => [self::SPEAKERS_CATEGORY]];
+            }
+            foreach($dataHeadphonesNew as $key => $item){
+                $dataHeadphonesNew[$key] += ["category" => [self::HEADPHONES_CATEGORY]];
+            }
             foreach($smartWatch as $key => $item){
                 $smartWatch[$key] += ["category" => [self::SMARTWATCHES_CATEGORY]];
             }
 
             $combined = array_merge(
-                $dataLaptops, 
-                $dataCellPhones, 
-                $smartWatch,
+                $dataLaptopsHp,
+                $dataLaptopsAsus,
                 $dataMacbookNew,
-                $dataMacbookUsed,
+                $dataMacbookUsed, 
+                $dataCellPhones,
                 $dataIphonesNew,
-                $dataIphonesUsed
+                $dataIphonesUsed,
+                $dataSpeakersNew, 
+                $dataHeadphonesNew,
+                $smartWatch,
             );
     
             $items = [];
+            $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
             foreach($combined as $producto){
                 $itm = [
                     "imagen" => $producto["thumbnailImages"][0]["imageUrl"],

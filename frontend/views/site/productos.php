@@ -166,10 +166,11 @@ use yii\bootstrap5\Html;
                 <?= Html::a( 'Computers', '', ['class' => "nav-link dropdown-toggle", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"]); ?>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <?= Html::a( 'All', ['site/filter-product', ['category' => UtilServices::COMPUTERS_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Apple Macbook', ['site/filter-product', ['category' => UtilServices::APPLE_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
                         <?= Html::a( 'Condition: new', ['site/filter-product', ['category' => UtilServices::COMPUTERS_NEW_CATEGORY]], ['class' => "dropdown-item"]); ?>
                         <?= Html::a( 'Condition: used', ['site/filter-product', ['category' => UtilServices::COMPUTERS_USED_CATEGORY]], ['class' => "dropdown-item"]); ?>
-
+                        <?= Html::a( 'Apple Macbook', ['site/filter-product', ['category' => UtilServices::APPLE_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Hp laptops', ['site/filter-product', ['category' => UtilServices::HP_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <?= Html::a( 'Asus laptops', ['site/filter-product', ['category' => UtilServices::ASUS_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
