@@ -292,7 +292,7 @@ class UtilServices
 
         // $parameters = [
         //     'grant_type' => 'authorization_code',
-        //     'code' => 'v^1.1#i^1#f^0#r^1#p^3#I^3#t^Ul4xMF83OjAyQjA2Mjg2MEIyNzExRkVBNDRFRUU2NEYyNDMzMTk5XzJfMSNFXjI2MA==',
+        //     'code' => '',
         //     'redirect_uri' => 'Joel_Males-JoelMale-bittad-fbeyxtn'
         // ];
 
@@ -301,7 +301,9 @@ class UtilServices
             'scope' => 'https://api.ebay.com/oauth/api_scope'
             ];
 
-        $encodedCredentials = base64_encode('JoelMale-bittadvi-PRD-aa26b07b1-076faaeb:PRD-a26b07b190be-e520-44c7-82a1-ed5d');
+        $accessKey = Parametros::findOne(['parNombre' => 'accessKey']);
+        $secretKey = Parametros::findOne(['parNombre' => 'secretKey']);
+        $encodedCredentials = base64_encode($accessKey->parValor . ':' . $secretKey->parValor);
         $headers = [
             'Cache-Control: no-cache',
             'Accept: application/json',
