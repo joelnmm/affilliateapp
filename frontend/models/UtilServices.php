@@ -301,9 +301,9 @@ class UtilServices
             'scope' => 'https://api.ebay.com/oauth/api_scope'
             ];
 
-        $accessKey = Parametros::findOne(['parNombre' => 'accessKey']);
-        $secretKey = Parametros::findOne(['parNombre' => 'secretKey']);
-        $encodedCredentials = base64_encode($accessKey->parValor . ':' . $secretKey->parValor);
+        $clientId = Parametros::findOne(['parNombre' => 'clientId']);
+        $clientSecret = Parametros::findOne(['parNombre' => 'clientSecret']);
+        $encodedCredentials = base64_encode($clientId ->parValor . ':' . $clientSecret->parValor);
         $headers = [
             'Cache-Control: no-cache',
             'Accept: application/json',

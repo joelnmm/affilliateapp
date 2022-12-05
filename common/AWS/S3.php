@@ -13,14 +13,15 @@ require '../../vendor/autoload.php';
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
 Use Aws\Credentials\Credentials;
+use app\models\Parametros;
 
 class S3 {
 
     public static function getS3Client(){
-        $AccessKey = 'AKIAUD5HO7SG3OUSAR6D';
-        $SecretKey = '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';
+        $accessKey = Parametros::findOne(['parNombre' => 'accessKey']);
+        $secretKey = Parametros::findOne(['parNombre' => 'secretKey']);
         
-        $credentials = new Credentials($AccessKey, $SecretKey);
+        $credentials = new Credentials($accessKey->parValor, $secretKey->parValor);
 
         return new S3Client([
             'region' => 'us-east-1',
