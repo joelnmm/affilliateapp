@@ -2,7 +2,7 @@
 
 namespace frontend\models;
 
-use app\models\Parametros;
+use common\models\Parametros;
 use \Statickidz\GoogleTranslate;
 use common\models\Articulos;
 use common\models\Productos;
