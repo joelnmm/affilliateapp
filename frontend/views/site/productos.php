@@ -214,9 +214,11 @@ use yii\bootstrap5\Html;
                         <div class="product-img">
                             <!-- <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/> -->
                             <img src="<?php echo $row['imagen'];?>" alt="Product Image"/>
-                            <div class="product-price">
-                                <span>$<?php echo $row['precio'];?></span>
-                            </div>
+                            <?php if(isset($row['precio']) && $row['precio']!==''){ ?>
+                                <div class="product-price">
+                                    <span>$<?php echo $row['precio'];?></span>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="product-content">
 
@@ -234,7 +236,7 @@ use yii\bootstrap5\Html;
                                 <?php }?>
                                     <!-- <i class="fa fa-star-o"></i> -->
                             </div>
-                            <?php if(isset($row['descripcion'])){ ?>
+                            <?php if(isset($row['descripcion']) && $row['descripcion']!==''){ ?>
                                 <div class="product-description">
                                     <?php echo $row['descripcion'];?>
                                 </div>
