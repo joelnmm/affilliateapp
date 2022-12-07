@@ -94,7 +94,7 @@ body{
 }
 
 .bg-custom-nav {
-    /* background: #8c0606; */
+    /* background: #8A8AFF; */
     background: #c9c9c9;
 }
 
@@ -180,7 +180,7 @@ body{
     <div class="nav-wrapper">
         <div class="sl-nav">
             <ul>
-            <li><b id="activeLenguaje">Languaje</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <li><b id="activeLenguaje">Language</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <ul>
 
