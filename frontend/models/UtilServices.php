@@ -228,7 +228,8 @@ class UtilServices
                     "nombre" => $producto["title"],
                     // "descripcion" => $producto["description"],
                     "url" => $producto["itemWebUrl"] . $affiliateLink->parValor,
-                    "categoria" => $producto["category"]
+                    "categoria" => $producto["category"],
+                    "condicion" => $producto["condition"]
                 ];
                 array_push($items, $itm);
             }

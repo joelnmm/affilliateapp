@@ -122,19 +122,19 @@ h6 {
     top: -50px;
 }
 
-/* .product-grid.grid-3 .product-price span:first-child {
+.product-grid.grid-3 .product-price span:first-child {
     display: inline-block;
     float: left;
-    width: 100px;
-    height: 100px;
-    margin-left: -50px;
-    padding: 60px 0 0 55px;
+    width: 135px;
+    height: 80px;
+    margin-left: -40px;
+    padding: 55px 0px 0 55px;
     font-size: 14px;
     font-weight: 300;
     color: #ffffff;
     background: #1dbf71;
     border-radius: 100px;
-} */
+}
 
 .product-grid.grid-3 .product-price span:last-child {
     display: inline-block;
@@ -146,7 +146,7 @@ h6 {
     font-size: 14px;
     font-weight: 400;
     color: #ffffff;
-    background: #ee0000;
+    background: #e68a01;
     border-radius: 100px;
 }
 
@@ -201,16 +201,29 @@ h6 {
     transition: .3s;
 }
 
+.product-condition {
+    display: inline-block;
+    height: 20px;
+    padding: 3px 5px;
+    font-size: 11px;
+    font-weight: 300;
+    color: #f7f7f7;
+    background: #646060;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
 .product-grid.grid-3 .product-action a {
     display: inline-block;
-    width: calc(50% - 1px);
+    width: calc(70% - 1px);
     height: 40px;
     padding: 13px 0;
     font-size: 13px;
     font-weight: 300;
-    color: #ffffff;
-    background: #FF6F61;
+    color: #f7f7f7;
+    background: #393838;
     margin-bottom: 15px;
+    border-radius: 5px;
 }
 
 .product-grid.grid-3 .product-action a:first-child {
@@ -222,5 +235,5 @@ h6 {
 }
 
 .product-grid.grid-3 .product-action a:hover {
-    background: #252525;
+    background: #d1c6c6;
 }

@@ -64,7 +64,7 @@ use yii\bootstrap5\Html;
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
         <!-- Main css -->
-        <!-- <link href="@web/../../../../frontend/web/css/mediumish.css" rel="stylesheet"/> -->
+        <!-- <link href="@web/../../../../frontend/web/css/style_products.css" rel="stylesheet"> -->
 
     </head>
 
@@ -214,11 +214,13 @@ use yii\bootstrap5\Html;
                         <div class="product-img">
                             <!-- <img src="<?php echo $pathToImg;?>uploads/<?php echo $row['imagen'];?>" alt="Product Image"/> -->
                             <img src="<?php echo $row['imagen'];?>" alt="Product Image"/>
-                            <?php if(isset($row['precio']) && $row['precio']!==''){ ?>
+                            
                                 <div class="product-price">
-                                    <span>$<?php echo $row['precio'];?></span>
+                                    <?php if(isset($row['precio']) && $row['precio']!==''){ ?>
+                                        <span>$<?php echo $row['precio'];?></span>
+                                    <?php } ?>
                                 </div>
-                            <?php } ?>
+                            
                         </div>
                         <div class="product-content">
 
@@ -232,15 +234,22 @@ use yii\bootstrap5\Html;
 
                             <div class="product-ratting">
                                 <?php for($i=0; $i<5; $i++) {?>
-                                    <i class="fa fa-star"></i>
+                                    <!-- <i class="fa fa-star"></i> -->
                                 <?php }?>
                                     <!-- <i class="fa fa-star-o"></i> -->
                             </div>
+                            <?php if(isset($row['condicion']) && $row['condicion']!==''){ ?>
+                                <div class="product-condition">
+                                    <b>Condition:</b> <?php echo $row['condicion'];?>
+                                </div>
+                            <?php } ?>
+
                             <?php if(isset($row['descripcion']) && $row['descripcion']!==''){ ?>
                                 <div class="product-description">
                                     <?php echo $row['descripcion'];?>
                                 </div>
                             <?php } ?>
+
                             <div class="product-action">
                                 <a href="<?php echo $row['url'];?>">
                                     <i class="fa fa-eye"></i> 
