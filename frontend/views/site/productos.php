@@ -32,6 +32,10 @@ use yii\bootstrap5\Html;
     position: relative;
     opacity: 1 !important;
 }
+
+/* .mainheading{
+    background: #969696;
+} */
 </style>
 
 <?php 

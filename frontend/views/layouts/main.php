@@ -34,7 +34,7 @@ body{
 
 .searchTerm {
   width: 100%;
-  border: 2px solid #635d5e;
+  border: 1px solid #635d5e;
   border-right: none;
   padding: 10px;
   height: 36px;
@@ -95,7 +95,9 @@ body{
 
 .bg-custom-nav {
     /* background: #8A8AFF; */
-    background: #c9c9c9;
+    background: #f3f6f4;
+    /* border-bottom: 1px solid;
+    border-color: #c2c4c3; */
 }
 
 </style>
