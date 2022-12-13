@@ -122,7 +122,7 @@ h6 {
     top: -50px;
 }
 
-.product-grid.grid-3 .product-price span:first-child {
+/* .product-grid.grid-3 .product-price span:first-child {
     display: inline-block;
     float: left;
     width: 135px;
@@ -134,7 +134,7 @@ h6 {
     color: #ffffff;
     background: #1dbf71;
     border-radius: 100px;
-}
+} */
 
 .product-grid.grid-3 .product-price span:last-child {
     display: inline-block;
@@ -157,9 +157,13 @@ h6 {
 
 .product-grid.grid-3 .product-title,
 .product-grid.grid-3 .product-ratting {
+    overflow: hidden;
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 .product-grid.grid-3 .product-title h2 {

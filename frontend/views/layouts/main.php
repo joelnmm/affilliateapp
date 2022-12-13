@@ -68,6 +68,7 @@ body{
   transform: translate(-50%, -50%);
 }
 
+/* for bigger screens */
 @media (min-width: 1800px) {
 .wrap{
     left: 65%;
@@ -77,9 +78,8 @@ body{
 /* for movil devices */
 @media (max-width: 1000px) {
 .wrap{
-    position: relative;
-    left: 50%;
-    width: 65%;
+    position: absolute;
+    left: 60%;
  }
 .search {
   width: 100%;
@@ -169,7 +169,6 @@ body{
             </button>
         </div>
     </div>
-    </tr>
 
     <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
 

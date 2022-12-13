@@ -238,6 +238,7 @@ use yii\bootstrap5\Html;
                                 <?php }?>
                                     <!-- <i class="fa fa-star-o"></i> -->
                             </div>
+
                             <?php if(isset($row['condicion']) && $row['condicion']!==''){ ?>
                                 <div class="product-condition">
                                     <b>Condition:</b> <?php echo $row['condicion'];?>
@@ -254,6 +255,7 @@ use yii\bootstrap5\Html;
                                 <a href="<?php echo $row['url'];?>">
                                     <i class="fa fa-eye"></i> 
                                     See product
+                                    <!-- on <img src="@web/../../../../frontend/web/logos/ebay_logo.png" height="18px" width="32px"> -->
                                 </a>
                             </div>
                         </div>
