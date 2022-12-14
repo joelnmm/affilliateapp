@@ -33,8 +33,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<!-- Main CSS -->
-	<!-- <link href="@web/../../../../frontend/web/css/main.css" rel="stylesheet"/> -->
+	
+	<!-- Jquery library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -137,35 +138,59 @@ MAIN
 		<div class="row">
 			<div class="mb-3 d-flex align-items-center">
 				<img height="200" src="<?php echo $nextArticle['imagen'];?>" >
-					<div class="pl-3">
-						<h2 class="h4 font-weight-bold">
-							<a class="text-dark" href="#">
-								<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
-							</a>
-						</h2>
-						<p class="card-text">
-							<?php echo $nextArticle['subtitulo'] ?>
-						</p>
-						<div>
-							<small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-							<small class="text-muted">Dec 12 · 5 min read</small>
-						</div>
+				
+				<!-- for tablets/pc -->
+				<div id="pc" class="pl-3">
+					<h2 class="h4 font-weight-bold">
+						<a class="text-dark" href="#">
+							<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
+						</a>
+					</h2>
+					<p class="card-text">
+						<?php echo $nextArticle['subtitulo'] ?>
+					</p>
+					<div>
+						<small class="d-block"><a class="text-muted" href="./author.html"><?php echo $nextArticle['autor'] ?></a></small>
+						<small class="text-muted">Dec 12 · 5 min read</small>
 					</div>
+				</div>
+					
 			</div>
-			
 		</div>
+
+		<!-- for movil devices -->
+		<div id="movil" class="pl-3">
+			<h2 class="h4 font-weight-bold">
+				<a class="text-dark" href="#">
+					<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
+				</a>
+			</h2>
+			<p class="card-text">
+				<?php echo $nextArticle['subtitulo'] ?>
+			</p>
+			<div>
+				<small class="d-block"><a class="text-muted" href="./author.html"><?php echo $nextArticle['autor'] ?></a></small>
+				<small class="text-muted">Dec 12 · 5 min read</small>
+			</div>
+		</div>
+
 	</div>
 <?php } ?>
 <!-- End Main -->
     
-    
-<!--------------------------------------
-JAVASCRIPTS
---------------------------------------->
-<!-- <script src="./assets/js/vendor/jquery.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/popper.min.js" type="text/javascript"></script>
-<script src="./assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
-<script src="./assets/js/functions.js" type="text/javascript"></script> -->
-<!-- </body> -->
+<script>
+	$(document).ready(function() {
+
+		console.log(screen.width)
+
+		if(screen.width > 500){
+			$('#pc').show();
+			$('#movil').hide();
+		}else{
+			$('#pc').hide();
+			$('#movil').show();
+		}
+	});
+</script>
 
 </html>
