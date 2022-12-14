@@ -87,17 +87,14 @@ body{
   display: flex;
   right: 0px;
 }
-.searchButton {
-    padding-right: 10px;
+.fa-search {
+    margin-right: 50px;
 }
 
 }
 
 .bg-custom-nav {
-    /* background: #8A8AFF; */
     background: #f3f6f4;
-    /* border-bottom: 1px solid;
-    border-color: #c2c4c3; */
 }
 
 </style>

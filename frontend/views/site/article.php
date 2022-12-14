@@ -9,13 +9,7 @@
 
 @media (max-width: 500px) {
     .containerFoot {
-		height: 600px;
-    } 
-}
-
-@media (max-width: 360px) {
-    .containerFoot {
-		height: 700px;
+		height: 550px;
     } 
 }
 </style>
@@ -180,9 +174,14 @@ MAIN
     
 <script>
 	$(document).ready(function() {
+		changeFooterPos();
+	});
 
-		console.log(screen.width)
+	$(window).on("orientationchange",function(){
+		changeFooterPos();
+	});
 
+	function changeFooterPos(){
 		if(screen.width > 500){
 			$('#pc').show();
 			$('#movil').hide();
@@ -190,7 +189,7 @@ MAIN
 			$('#pc').hide();
 			$('#movil').show();
 		}
-	});
+	}
 </script>
 
 </html>
