@@ -201,12 +201,12 @@ use yii\bootstrap5\Html;
     </nav>
     
     <!---------- Product card begin ------------>
-    <body>
+    <body >
         <div class="grid-title">
             <h2><?php echo $subtituloProducto ?></h2>
         </div>
 
-        <div class="product-grid grid-3">
+        <div class="product-grid grid-3 main-products-container">
 
             <?php
             if(!empty($data)){

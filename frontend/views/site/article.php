@@ -2,6 +2,23 @@
 	use yii\bootstrap5\Html;
     use yii\helpers\Url;
 ?>
+<style>
+.containerFoot{
+	height: 300px;
+}
+
+@media (max-width: 500px) {
+    .containerFoot {
+		height: 600px;
+    } 
+}
+
+@media (max-width: 360px) {
+    .containerFoot {
+		height: 700px;
+    } 
+}
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,12 +130,6 @@ MAIN
 		
 	</div>
 </div>
-
-<style>
-.containerFoot{
-	height: 300px;
-}
-</style>
     
 <?php if(isset($nextArticle)){ ?>
 	<div class="containerFoot pt-4 pb-4">

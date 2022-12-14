@@ -1577,7 +1577,9 @@ pre {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar; }
     .table-responsive-sm > .table-bordered {
-      border: 0; } }
+      border: 0; }
+    }
+
 
 @media (max-width: 767.98px) {
   .table-responsive-md {
@@ -7513,6 +7515,11 @@ html {
   @media (min-width: 1200px) {
     .container {
       max-width: 1140px; } }
+  @media (max-width: 570px) {
+    .main-products-container {
+      margin: auto;
+      width: 80%; 
+    } }
 
 .container-fluid {
   width: 100%;
