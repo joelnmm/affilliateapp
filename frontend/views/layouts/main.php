@@ -155,7 +155,8 @@ body{
 
     <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
 
-        $id = explode('=',$_SERVER['REQUEST_URI'])[1];
+        // $id = explode('=',$_SERVER['REQUEST_URI'])[1];
+        $id = '7';
     }?>
     <!-- Languaje selector -->
     <div class="nav-wrapper">
@@ -220,13 +221,14 @@ body{
 <script>
 
     $(document).ready(function() {
+        console.log('locaccion ', $_SERVER['REQUEST_URI']);
 	});
 
     $(document).on('keypress',function(e) {
-        onKeyPressSearch();
+        onKeyPressSearch(e);
     });
 
-    function onKeyPressSearch(){
+    function onKeyPressSearch(e){
         var word = $('#searchBox').val();
         if(e.which == 13 && word !== '') {
             searchProducts(word);
