@@ -221,7 +221,7 @@ body{
 <script>
 
     $(document).ready(function() {
-        console.log('locaccion ', $_SERVER['REQUEST_URI']);
+        console.log('locaccion ', <?php echo json_encode($_SERVER['REQUEST_URI']); ?>);
 	});
 
     $(document).on('keypress',function(e) {
