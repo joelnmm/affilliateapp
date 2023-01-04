@@ -16,9 +16,6 @@ return [
             'csrfParam' => '_csrf-frontend',
             // 'baseUrl'=>'',
         ],
-        // 'urlManager'=>[
-        //     'scriptUrl'=>'/index.php',
-        // ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -41,13 +38,13 @@ return [
             'errorAction' => 'site/error',
         ],
         // Para mejorar la url y SEO friendly
-        
-        // 'urlManager' => [
-        //     'enablePrettyUrl' => true,
-        //     'showScriptName' => false,
-        //     'rules' => [
-        //     ],
-        // ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '' => 'site/productos',
+            ],
+        ],
         
         
     ],

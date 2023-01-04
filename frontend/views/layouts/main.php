@@ -5,6 +5,7 @@
 
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+use frontend\controllers\SiteController;
 use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
@@ -34,7 +35,7 @@ body{
 
 .searchTerm {
   width: 100%;
-  border: 1px solid #635d5e;
+  border: 1px solid #000000;
   border-right: none;
   padding: 10px;
   height: 36px;
@@ -50,8 +51,8 @@ body{
 .searchButton {
   width: 40px;
   height: 36px;
-  border: 0.5px solid #635d5e;
-  background: #635d5e;
+  border: 0.5px solid #000000;
+  background: #323232;
   text-align: center;
   color: #fff;
   border-radius: 0 20px 20px 0;
@@ -141,38 +142,20 @@ body{
     ]);
 
     $id = '';
-    $view = 'productos';
-    if (str_contains($_SERVER['REQUEST_URI'], 'product')
-        || str_contains($_SERVER['REQUEST_URI'], 'search')) { 
-        $view = 'productos';
+    if (str_contains(SiteController::$ACTUAL_VIEW, 'product')) { ?>
 
-        // echo '<div class="wrap">' . 
-        //         '<div class="search">' . 
-        //             Html::input('text', 'nombre', '', ['class' => 'searchTerm', 
-        //             'placeholder' => 'What are you looking for?', 
-        //             'id' => 'searchBox'
-        //             ]) 
-        //             . 
-        //             Html::submitButton('', ['class' => 'searchButton fa fa-search',
-        //             'onclick' => 'searchProducts($("#searchBox").val())'])
-        //         . '</div>' 
-        //     . '</div>';
-
-    ?>
-
-    <div class="wrap">
-        <div class="search">
-            <input id="searchBox" type="text" class="searchTerm" placeholder="What are you looking for?">
-            <button type="submit" class="searchButton" onclick="searchProducts($('#searchBox').val())">
-                <i class="fa fa-search"></i>
-            </button>
+        <div class="wrap">
+            <div class="search">
+                <input id="searchBox" type="text" class="searchTerm" placeholder="What are you looking for?">
+                <button type="submit" class="searchButton" onclick="searchProducts($('#searchBox').val())">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </div>
-    </div>
 
     <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
 
         $id = explode('=',$_SERVER['REQUEST_URI'])[1];
-        $view = 'article';
     }?>
     <!-- Languaje selector -->
     <div class="nav-wrapper">
@@ -181,22 +164,14 @@ body{
             <li><b id="activeLenguaje">Language</b> <i class="fa fa-angle-down" aria-hidden="true"></i>
                 <div class="triangle"></div>
                 <ul>
-
                 <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
                     <span class="active">
-                    <?= Html::a( 'Spanish', ['site/translated-view', ['target' => 'es', 'view' => $view, 'id' => $id]], [
-                                    'class' => "thumbnail",
-                                    'onclick' => 'changeLanguaje("Spanish")' 
-                                ]); ?>
-                    </span>
+                    <a class="thumbnail" onclick="changeLanguaje('Spanish')" href="<?= Url::to(array('site/translated-view', 'target' => 'es', 'view' => SiteController::$ACTUAL_VIEW, 'id' => $id)); ?>">Spanish</a>
                 </li>
 
                 <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
                     <span>
-                    <?= Html::a( 'English', ['site/translated-view', ['target' => 'en', 'view' => $view, 'id' => $id]], [
-                                    'class' => "thumbnail", 
-                                    'onclick' => 'changeLanguaje("English")'
-                                ]); ?>
+                    <a class="thumbnail" onclick="changeLanguaje('English')" href="<?= Url::to(array('site/translated-view', 'target' => 'en', 'view' => SiteController::$ACTUAL_VIEW, 'id' => $id)); ?>">English</a>
                     </span>
                 </li>
                 </ul>
@@ -244,12 +219,19 @@ body{
 
 <script>
 
+    $(document).ready(function() {
+	});
+
     $(document).on('keypress',function(e) {
+        onKeyPressSearch();
+    });
+
+    function onKeyPressSearch(){
         var word = $('#searchBox').val();
         if(e.which == 13 && word !== '') {
             searchProducts(word);
         }
-    });
+    }
 
     function searchProducts(word){
 
@@ -259,7 +241,8 @@ body{
         if(!server.includes('affilliateapp')){
             currentUrl = "http://www.bittadvice.com/frontend/web/site/search";
         }
-        window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
+        // window.location.href = currentUrl + '?1%5Bword%5D=' + String(word);
+        window.location.href = currentUrl + '?query=' + String(word);
 
     }
 

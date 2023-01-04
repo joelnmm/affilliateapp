@@ -2,7 +2,7 @@
 
 use frontend\models\UtilServices;
 use yii\bootstrap5\Html;
-    use yii\helpers\Url;
+use yii\helpers\Url;
 ?>
 
 <!-- Products display -->
@@ -106,19 +106,12 @@ use yii\bootstrap5\Html;
             <div class="card">
                 <div class="row">
                     <div class="col-md-5 wrapthumbnail">
-                        <a href="">
-                            <?= Html::a( '', ['site/article', ['id' => $articulo['id']]], [
-                                'class' => "thumbnail", 
-                                'style' => "background-image:url(" . $articulo['imagen'] . ");"
-                                ]) ?>
-                        </a>
+                        <a class="thumbnail" style="background-image:url( <?= $articulo['imagen'];?> );" href="<?= Url::to(array('site/article', 'id' => $articulo['id'])); ?>"></a>
                     </div> 
                     <div class="col-md-7">
                         <div class="card-block">
                             <h2 class="card-title">
-                                <a href="">
-                                    <?= Html::a( $articulo['titulo'], ['site/article', ['id' => $articulo['id']]]) ?>
-                                </a>
+                                <a href="<?= Url::to(array('site/article', 'id' => $articulo['id'])); ?>" > <?php echo $articulo['titulo'];?> </a>                                
                             </h2>
                             <h4 class="card-text"> <?php echo $articulo['subtitulo'];?> </h4>
                             <div class="metafooter">
@@ -169,31 +162,31 @@ use yii\bootstrap5\Html;
 	        	<li class="nav-item dropdown">
                 <?= Html::a( 'Computers', '', ['class' => "nav-link dropdown-toggle", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"]); ?>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <?= Html::a( 'All', ['site/filter-product', ['category' => UtilServices::COMPUTERS_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Condition: new', ['site/filter-product', ['category' => UtilServices::COMPUTERS_NEW_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Condition: used', ['site/filter-product', ['category' => UtilServices::COMPUTERS_USED_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Apple Macbook', ['site/filter-product', ['category' => UtilServices::APPLE_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Hp laptops', ['site/filter-product', ['category' => UtilServices::HP_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Asus laptops', ['site/filter-product', ['category' => UtilServices::ASUS_LAPTOP_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::COMPUTERS_CATEGORY)); ?>">All</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::COMPUTERS_NEW_CATEGORY)); ?>">Condition: new</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::COMPUTERS_USED_CATEGORY)); ?>">Condition: used</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::APPLE_LAPTOP_CATEGORY)); ?>">Apple Macbook</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::HP_LAPTOP_CATEGORY)); ?>">Hp laptops</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::ASUS_LAPTOP_CATEGORY)); ?>">Asus laptops</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                 <?= Html::a( 'Cellphones', '', ['class' => "nav-link dropdown-toggle", "data-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false"]); ?>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <?= Html::a( 'All', ['site/filter-product', ['category' => UtilServices::CELLPHONES_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Apple Iphone', ['site/filter-product', ['category' => UtilServices::APPLE_IPHONE_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Condition: new', ['site/filter-product', ['category' => UtilServices::CELLPHONES_NEW_CATEGORY]], ['class' => "dropdown-item"]); ?>
-                        <?= Html::a( 'Condition: used', ['site/filter-product', ['category' => UtilServices::CELLPHONES_USED_CATEGORY]], ['class' => "dropdown-item"]); ?>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::CELLPHONES_CATEGORY)); ?>">All</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::APPLE_IPHONE_CATEGORY)); ?>">Apple iPhone</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::CELLPHONES_NEW_CATEGORY)); ?>">Condition: new</a>
+                        <a class="dropdown-item" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::CELLPHONES_USED_CATEGORY)); ?>">Condition: used</a>
                     </div>
                 </li>
 	        	<li class="nav-item">
-                    <?= Html::a( 'Smart Watches', ['site/filter-product', ['category' => UtilServices::SMARTWATCHES_CATEGORY]], ['class' => "nav-link"]); ?>
+                    <a class="nav-link" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::SMARTWATCHES_CATEGORY)); ?>">Smart Watches</a>
                 </li>
 	            <li class="nav-item">
-                    <?= Html::a( 'Speakers', ['site/filter-product', ['category' => UtilServices::SPEAKERS_CATEGORY]], ['class' => "nav-link"]); ?>
+                    <a class="nav-link" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::SPEAKERS_CATEGORY)); ?>">Speakers</a>
                 </li>
                 <li class="nav-item">
-                    <?= Html::a( 'Headphones', ['site/filter-product', ['category' => UtilServices::HEADPHONES_CATEGORY]], ['class' => "nav-link"]); ?>
+                    <a class="nav-link" href="<?= Url::to(array('site/filter-product', 'category' => UtilServices::HEADPHONES_CATEGORY)); ?>">Headphones</a>
                 </li>
 	        </ul>
 	      </div>

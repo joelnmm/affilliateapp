@@ -136,16 +136,14 @@ MAIN
 				<!-- for tablets/pc -->
 				<div id="pc" class="pl-3">
 					<h2 class="h4 font-weight-bold">
-						<a class="text-dark" href="#">
-							<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
-						</a>
+						<a class="text-dark" href="<?= Url::to(array('site/article', 'id' => $nextArticle['id'])); ?>" > <?php echo $nextArticle['titulo'];?> </a> 
 					</h2>
 					<p class="card-text">
 						<?php echo $nextArticle['subtitulo'] ?>
 					</p>
 					<div>
 						<small class="d-block"><a class="text-muted" href="./author.html"><?php echo $nextArticle['autor'] ?></a></small>
-						<small class="text-muted">Dec 12 · 5 min read</small>
+						<small class="text-muted"><?php echo $nextArticle['fecha'] ?></small>
 					</div>
 				</div>
 					
@@ -155,16 +153,14 @@ MAIN
 		<!-- for movil devices -->
 		<div id="movil" class="pl-3">
 			<h2 class="h4 font-weight-bold">
-				<a class="text-dark" href="#">
-					<?= Html::a( $nextArticle['titulo'], ['site/article', ['id' => $nextArticle['id']]]) ?>
-				</a>
+				<a class="text-dark" href="<?= Url::to(array('site/article', 'id' => $nextArticle['id'])); ?>" > <?php echo $nextArticle['titulo'];?> </a> 
 			</h2>
 			<p class="card-text">
 				<?php echo $nextArticle['subtitulo'] ?>
 			</p>
 			<div>
 				<small class="d-block"><a class="text-muted" href="./author.html"><?php echo $nextArticle['autor'] ?></a></small>
-				<small class="text-muted">Dec 12 · 5 min read</small>
+				<small class="text-muted"><?php echo $nextArticle['fecha'] ?></small>
 			</div>
 		</div>
 

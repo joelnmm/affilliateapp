@@ -10,5 +10,6 @@ return [
             'class' => \yii\caching\FileCache::class,
         ],
     ],
-    // 'defaultRoute' => 'frontend/web/site/productos',
+    // 'homeUrl' => ['site/productos'],
+    // 'catchAll' => ['site/offline']
 ];

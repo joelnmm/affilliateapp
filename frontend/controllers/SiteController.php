@@ -32,6 +32,7 @@ class SiteController extends Controller
     public const SUBTITULO_PRODUCTOS = 'The most interesting items in technology these days';
     public const SUBTITULO_PRODUCTOS_GRID = "Today's Choice";
     public const ACTUAL_LENGUAJE = 'English';
+    public static $ACTUAL_VIEW = 'none';
 
     /**
      * {@inheritdoc}
@@ -87,7 +88,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {      
-        return Yii::$app->response->redirect(['frontend/web/site/productos']); 
+        //return Yii::$app->response->redirect(['frontend/web/site/productos']); 
+        //return Yii::$app->response->redirect(['site/productos']); 
     }
 
     /**
@@ -169,6 +171,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+        self::$ACTUAL_VIEW = 'about';
         return $this->render('about');
     }
 
@@ -283,9 +286,14 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionOffline(){
+        echo 'You are not connected to Internet';
+    }
+
     public function actionArticle(){
 
-        $id = $_GET[1]['id'];
+        self::$ACTUAL_VIEW = 'article';
+        $id = $_GET['id'];
         $model = Articulos::findOne(['id' => $id]);
         $dataArticulos = Articulos::find()->all();
 
@@ -311,7 +319,8 @@ class SiteController extends Controller
     }
 
     public function actionSearch(){
-        $query = $_GET[1]['word'];
+        self::$ACTUAL_VIEW = 'productos';
+        $query = $_GET['query'];
 
         $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
         $dataSql = Productos::findBySql($sql)->all();
@@ -336,7 +345,8 @@ class SiteController extends Controller
     }
 
     public function actionFilterProduct(){
-        $category = $_GET[1]['category'];
+        $category = $_GET['category'];
+        self::$ACTUAL_VIEW = 'productos';
 
         $dataSql = Productos::find()->where([
             'categoria' => $category
@@ -366,7 +376,8 @@ class SiteController extends Controller
         $itemsApi = UtilServices::getEbayProductData();
         $itemsDb = Productos::find()->all();
         $items = array_merge($itemsDb, $itemsApi);
-        
+        self::$ACTUAL_VIEW = 'productos';
+
         $dataArticulos = Articulos::find()->all();
         
         return $this->render('productos',[
@@ -427,13 +438,13 @@ class SiteController extends Controller
 
     public function actionTranslatedView(){
 
-        $target = $_GET[1]['target'];
-        $view = $_GET[1]['view'];
-        $id = $_GET[1]['id'];
+        self::$ACTUAL_VIEW = $_GET['view'];
+        $target = $_GET['target'];
+        $id = $_GET['id'];
 
-        $params = UtilServices::translateByView($target, $view, $id, self::TITULO_PRODUCTOS, self::SUBTITULO_PRODUCTOS);
+        $params = UtilServices::translateByView($target, self::$ACTUAL_VIEW, $id, self::TITULO_PRODUCTOS, self::SUBTITULO_PRODUCTOS);
 
-        return $this->render($view, $params);
+        return $this->render(self::$ACTUAL_VIEW, $params);
 
     }
 
