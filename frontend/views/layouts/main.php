@@ -155,12 +155,15 @@ body{
 
     <?php } elseif (SiteController::$ACTUAL_VIEW == 'article') {
 
-        $urlArr = explode('/',$_SERVER['REQUEST_URI']);
-
-        echo json_encode($urlArr);
-        // $id = $urlArr[sizeof($urlArr)];
+        if(str_contains($_SERVER['REQUEST_URI'], '=')){
+            $urlArr = explode('=',$_SERVER['REQUEST_URI']);
+            $id = $urlArr[sizeof($urlArr)-1];
+        }else{
+            $urlArr = explode('/',$_SERVER['REQUEST_URI']);
+            $id = $urlArr[sizeof($urlArr)-1];
+        }
         
-        $id = '7';
+        // $id = '7';
     }?>
     <!-- Languaje selector -->
     <div class="nav-wrapper">
