@@ -135,6 +135,7 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+        self::$ACTUAL_VIEW = 'contact';
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
@@ -391,6 +392,7 @@ class SiteController extends Controller
 
     public function actionProductosSQL(){
 
+        self::$ACTUAL_VIEW = 'productos';
         $data = Productos::find()->all();
         $dataArticulos = Articulos::find()->all();
         shuffle($dataArticulos);

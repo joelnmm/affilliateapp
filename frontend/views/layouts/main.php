@@ -142,7 +142,7 @@ body{
     ]);
 
     $id = '';
-    if (str_contains(SiteController::$ACTUAL_VIEW, 'product')) { ?>
+    if (SiteController::$ACTUAL_VIEW == 'productos') { ?>
 
         <div class="wrap">
             <div class="search">
@@ -153,9 +153,13 @@ body{
             </div>
         </div>
 
-    <?php } elseif (str_contains($_SERVER['REQUEST_URI'], 'article')) {
+    <?php } elseif (SiteController::$ACTUAL_VIEW == 'article') {
 
-        // $id = explode('=',$_SERVER['REQUEST_URI'])[1];
+        $urlArr = explode('/',$_SERVER['REQUEST_URI']);
+
+        echo json_encode($urlArr);
+        // $id = $urlArr[sizeof($urlArr)];
+        
         $id = '7';
     }?>
     <!-- Languaje selector -->
@@ -168,6 +172,7 @@ body{
                 <li href=""><i class="sl-flag flag-de"><div id="spain"></div></i> 
                     <span class="active">
                     <a class="thumbnail" onclick="changeLanguaje('Spanish')" href="<?= Url::to(array('site/translated-view', 'target' => 'es', 'view' => SiteController::$ACTUAL_VIEW, 'id' => $id)); ?>">Spanish</a>
+                    </span>
                 </li>
 
                 <li href=""><i class="sl-flag flag-usa"><div id="usa"></div></i>
@@ -221,7 +226,6 @@ body{
 <script>
 
     $(document).ready(function() {
-        console.log('locaccion ', <?php echo json_encode($_SERVER['REQUEST_URI']); ?>);
 	});
 
     $(document).on('keypress',function(e) {
