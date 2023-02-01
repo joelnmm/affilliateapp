@@ -1,5 +1,6 @@
 <?php
 
+
 return [
     'components' => [
         // localhost side
@@ -50,16 +51,19 @@ return [
             // https://symfony.com/doc/current/mailer.html#using-a-3rd-party-transport
         ],
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
+            // Disable r = routes
+            'enablePrettyUrl' => true,
             // Disable index.php
             'showScriptName' => false,
-            // Disable r= routes
-            'enablePrettyUrl' => true,
-            'rules' => array(
-                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ),
+            'enableStrictParsing' => false,
+            'rules' => [
+                // '' => 'site/productos',
+                //'admin' => 'backend/web/site/login',
+                // '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+                //'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+
+                // '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ],
         ],
     ],
 ];

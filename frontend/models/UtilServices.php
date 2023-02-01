@@ -143,6 +143,8 @@ class UtilServices
 
         $response = self::getApi($uri,'GET',$headers);
 
+        //return $response;
+
         if(isset($response["itemSummaries"])){
             return $response["itemSummaries"];
 
@@ -161,6 +163,7 @@ class UtilServices
     public static function getEbayProductData(){
 
         $dataLaptopsHp = UtilServices::browseItemsEbayApi('Hp+laptop', '10', '200..2000', 'NEW');
+        // return $dataLaptopsHp;
         $dataLaptopsAsus = UtilServices::browseItemsEbayApi('Asus+laptop', '10', '200..2000', 'NEW');
         $dataMacbookNew = UtilServices::browseItemsEbayApi('macbook', '10','700..2000','NEW');
         $dataMacbookUsed = UtilServices::browseItemsEbayApi('macbook', '10','300..1000','USED');
