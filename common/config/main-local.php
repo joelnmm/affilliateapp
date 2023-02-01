@@ -15,7 +15,7 @@ return [
         // Server side
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
+            'dsn' => 'mysql:host=localhost;dbname=affilliateappdb',
             'username' => 'root',
             'password' => 'affiliatepass123',
             'charset' => 'utf8',
