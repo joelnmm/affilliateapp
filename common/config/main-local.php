@@ -17,7 +17,7 @@ return [
             'class' => \yii\db\Connection::class,
             'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
             'username' => 'root',
-            'password' => 'affiliatepass123',
+            'password' => '!WWWlopalo1997',
             'charset' => 'utf8',
         ],
         'mailer' => [
