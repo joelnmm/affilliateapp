@@ -143,8 +143,6 @@ class UtilServices
 
         $response = self::getApi($uri,'GET',$headers);
 
-        //return $response;
-
         if(isset($response["itemSummaries"])){
             return $response["itemSummaries"];
 
@@ -162,83 +160,104 @@ class UtilServices
 
     public static function getEbayProductData(){
 
-        $dataLaptopsHp = UtilServices::browseItemsEbayApi('Hp+laptop', '10', '200..2000', 'NEW');
-        // return $dataLaptopsHp;
-        $dataLaptopsAsus = UtilServices::browseItemsEbayApi('Asus+laptop', '10', '200..2000', 'NEW');
-        $dataMacbookNew = UtilServices::browseItemsEbayApi('macbook', '10','700..2000','NEW');
-        $dataMacbookUsed = UtilServices::browseItemsEbayApi('macbook', '10','300..1000','USED');
-        $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '10');
-        $dataIphonesNew = UtilServices::browseItemsEbayApi('iphone', '10','600..1500','NEW');
-        $dataIphonesUsed = UtilServices::browseItemsEbayApi('iphone', '10', '300..9000','USED');
-        $dataSpeakersNew = UtilServices::browseItemsEbayApi('portable+speakers', '10', '50..500','NEW');
-        $dataHeadphonesNew = UtilServices::browseItemsEbayApi('wireless+headphones', '10', '20..500','NEW');
-        $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+        $productObject = Productos::find()->where(['esTemporalEbay' => "si"])->one();
 
-        if(!isset($dataLaptopsHp[0]["title"])){
-            $items = [];
-
+        if(isset($productObject)){
+            $fechaExpiracion = date("Y-m-d", strtotime($productObject->lastFetchedEbay . "+ 1 days"));
+            $dateTimeActual = date("Y-m-d");
         }else{
-            foreach($dataLaptopsHp as $key => $item){
-                $dataLaptopsHp[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::HP_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
-            }
-            foreach($dataLaptopsAsus as $key => $item){
-                $dataLaptopsAsus[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::ASUS_LAPTOP_CATEGORY ,self::COMPUTERS_NEW_CATEGORY]];
-            }
-            foreach($dataMacbookNew as $key => $item){
-                $dataMacbookNew[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
-            }
-            foreach($dataMacbookUsed as $key => $item){
-                $dataMacbookUsed[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY, self::COMPUTERS_USED_CATEGORY]];
-            }
-            foreach($dataCellPhones as $key => $item){
-                $dataCellPhones[$key] += ["category" => [self::CELLPHONES_CATEGORY]];
-            }
-            foreach($dataIphonesNew as $key => $item){
-                $dataIphonesNew[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY, self::CELLPHONES_NEW_CATEGORY]];
-            }
-            foreach($dataIphonesUsed as $key => $item){
-                $dataIphonesUsed[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY, self::CELLPHONES_USED_CATEGORY]];
-            }
-            foreach($dataSpeakersNew as $key => $item){
-                $dataSpeakersNew[$key] += ["category" => [self::SPEAKERS_CATEGORY]];
-            }
-            foreach($dataHeadphonesNew as $key => $item){
-                $dataHeadphonesNew[$key] += ["category" => [self::HEADPHONES_CATEGORY]];
-            }
-            foreach($smartWatch as $key => $item){
-                $smartWatch[$key] += ["category" => [self::SMARTWATCHES_CATEGORY]];
-            }
-
-            $combined = array_merge(
-                $dataLaptopsHp,
-                $dataLaptopsAsus,
-                $dataMacbookNew,
-                $dataMacbookUsed, 
-                $dataCellPhones,
-                $dataIphonesNew,
-                $dataIphonesUsed,
-                $dataSpeakersNew, 
-                $dataHeadphonesNew,
-                $smartWatch,
-            );
-    
-            $items = [];
-            $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
-            foreach($combined as $producto){
-                $itm = [
-                    "imagen" => $producto["thumbnailImages"][0]["imageUrl"],
-                    "precio" => $producto["price"]["value"],
-                    "nombre" => $producto["title"],
-                    // "descripcion" => $producto["description"],
-                    "url" => $producto["itemWebUrl"] . $affiliateLink->parValor,
-                    "categoria" => $producto["category"],
-                    "condicion" => $producto["condition"]
-                ];
-                array_push($items, $itm);
-            }
+            $fechaExpiracion = 0;
+            $dateTimeActual = 0;
         }
 
-        return $items;
+        if($dateTimeActual >= $fechaExpiracion ){
+
+            // Eliminamos los registros anteriores para aactualizar con los nuevos
+            $productosEliminar = Productos::find()->where(['esTemporalEbay' => "si"])->all();
+    
+            if(!isEmpty($productosEliminar)){
+                foreach($productosEliminar as $p){
+                    $p->delete();
+                }
+            }
+
+            // Llamamos la api de ebay por diferentes busquedas
+            $dataLaptopsHp = UtilServices::browseItemsEbayApi('Hp+laptop', '10', '200..2000', 'NEW');
+            $dataLaptopsAsus = UtilServices::browseItemsEbayApi('Asus+laptop', '10', '200..2000', 'NEW');
+            $dataMacbookNew = UtilServices::browseItemsEbayApi('macbook', '10','700..2000','NEW');
+            $dataMacbookUsed = UtilServices::browseItemsEbayApi('macbook', '10','300..1000','USED');
+            $dataCellPhones = UtilServices::browseItemsEbayApi('cellphones', '10');
+            $dataIphonesNew = UtilServices::browseItemsEbayApi('iphone', '10','600..1500','NEW');
+            $dataIphonesUsed = UtilServices::browseItemsEbayApi('iphone', '10', '300..9000','USED');
+            $dataSpeakersNew = UtilServices::browseItemsEbayApi('portable+speakers', '10', '50..500','NEW');
+            $dataHeadphonesNew = UtilServices::browseItemsEbayApi('wireless+headphones', '10', '20..500','NEW');
+            $smartWatch = UtilServices::browseItemsEbayApi('smartwatch', '20');
+
+            // Agregamos la categoria a cada resultado de las busquedas
+            if(isset($dataLaptopsHp[0]["title"])){
+
+                foreach($dataLaptopsHp as $key => $item){
+                    $dataLaptopsHp[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::HP_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
+                }
+                foreach($dataLaptopsAsus as $key => $item){
+                    $dataLaptopsAsus[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::ASUS_LAPTOP_CATEGORY ,self::COMPUTERS_NEW_CATEGORY]];
+                }
+                foreach($dataMacbookNew as $key => $item){
+                    $dataMacbookNew[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY, self::COMPUTERS_NEW_CATEGORY]];
+                }
+                foreach($dataMacbookUsed as $key => $item){
+                    $dataMacbookUsed[$key] += ["category" => [self::COMPUTERS_CATEGORY, self::APPLE_CATEGORY, self::APPLE_LAPTOP_CATEGORY, self::COMPUTERS_USED_CATEGORY]];
+                }
+                foreach($dataCellPhones as $key => $item){
+                    $dataCellPhones[$key] += ["category" => [self::CELLPHONES_CATEGORY]];
+                }
+                foreach($dataIphonesNew as $key => $item){
+                    $dataIphonesNew[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY, self::CELLPHONES_NEW_CATEGORY]];
+                }
+                foreach($dataIphonesUsed as $key => $item){
+                    $dataIphonesUsed[$key] += ["category" => [self::CELLPHONES_CATEGORY, self::APPLE_CATEGORY, self::APPLE_IPHONE_CATEGORY, self::CELLPHONES_USED_CATEGORY]];
+                }
+                foreach($dataSpeakersNew as $key => $item){
+                    $dataSpeakersNew[$key] += ["category" => [self::SPEAKERS_CATEGORY]];
+                }
+                foreach($dataHeadphonesNew as $key => $item){
+                    $dataHeadphonesNew[$key] += ["category" => [self::HEADPHONES_CATEGORY]];
+                }
+                foreach($smartWatch as $key => $item){
+                    $smartWatch[$key] += ["category" => [self::SMARTWATCHES_CATEGORY]];
+                }
+
+                $combined = array_merge(
+                    $dataLaptopsHp,
+                    $dataLaptopsAsus,
+                    $dataMacbookNew,
+                    $dataMacbookUsed, 
+                    $dataCellPhones,
+                    $dataIphonesNew,
+                    $dataIphonesUsed,
+                    $dataSpeakersNew, 
+                    $dataHeadphonesNew,
+                    $smartWatch,
+                );
+
+                foreach($combined as $producto){
+                    $model = new Productos();
+                    $model->imagen = $producto["imagen"];
+                    $model->precio = $producto["precio"];
+                    $model->nombre = $producto["nombre"];
+                    // $model->descripcion = $producto["descripcion"];
+                    $model->url = $producto["url"];
+                    $model->categoria = $producto["categoria"];
+                    $model->condicion = $producto["condicion"];
+                    $model->esTemporalEbay = "si";
+                    $model->lastFetchedEbay = date("Y-m-d");
+                    $model->save();
+                }
+            }
+
+        }
+
+        return 'OK';
     }
 
     public static function getApi($uri,$type,$httpheaders,$postFields=[]){

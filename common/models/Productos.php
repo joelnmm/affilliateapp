@@ -39,7 +39,7 @@ class Productos extends \yii\db\ActiveRecord
             [['imagen'], 'file'],
             [['descripcion', 'url'], 'string', 'max' => 1000],
             [['id'], 'unique'],
-            [['categoria', 'condicion'], 'string'],
+            [['categoria', 'condicion', 'esTemporalEbay', 'lastFetchedEbay'], 'string'],
         ];
     }
 

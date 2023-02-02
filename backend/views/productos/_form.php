@@ -29,6 +29,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'imagen')->fileInput(); ?>
 
+    <div style="display: none;">
+        <?= $form->field($model, 'esTemporalEbay')->textInput(['value' => 'no']); ?>
+    </div>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

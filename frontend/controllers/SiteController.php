@@ -374,9 +374,9 @@ class SiteController extends Controller
 
     public function actionProductos(){
 
-        $itemsApi = UtilServices::getEbayProductData();         
-        $itemsDb = Productos::find()->all();
-        $items = array_merge($itemsDb, $itemsApi);
+        // $data = UtilServices::getEbayProductData();   
+        // return json_encode($data); 
+        $items = Productos::find()->all();
         self::$ACTUAL_VIEW = 'productos';
 
         $dataArticulos = Articulos::find()->all();
