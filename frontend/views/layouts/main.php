@@ -162,8 +162,7 @@ body{
             $urlArr = explode('/',$_SERVER['REQUEST_URI']);
             $id = $urlArr[sizeof($urlArr)-1];
         }
-        
-        // $id = '7';
+
     }?>
     <!-- Languaje selector -->
     <div class="nav-wrapper">

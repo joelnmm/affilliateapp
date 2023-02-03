@@ -323,20 +323,23 @@ class SiteController extends Controller
         self::$ACTUAL_VIEW = 'productos';
         $query = $_GET['query'];
 
-        $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
-        $dataSql = Productos::findBySql($sql)->all();
-        $dataArticulos = Articulos::find()->all();
+        // $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
+        // $dataSql = Productos::findBySql($sql)->all();
 
         $items = UtilServices::getEbayProductData();
-        $dataApi = [];
-        foreach($items as $product) {
+        $data = Productos::find()->all();
+        $dataArticulos = Articulos::find()->all();
+
+        
+        $dataProductos = [];
+        foreach($data as $product) {
             if (str_contains(strtolower($product["nombre"]), strtolower($query))){
-                array_push($dataApi, $product);
+                array_push($dataProductos, $product);
             }
         }
 
         return $this->render('productos',[
-            'data' => $dataApi,
+            'data' => $dataProductos,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
@@ -349,22 +352,20 @@ class SiteController extends Controller
         $category = $_GET['category'];
         self::$ACTUAL_VIEW = 'productos';
 
-        $dataSql = Productos::find()->where([
-            'categoria' => $category
-        ])->all();
-
-        $dataArticulos = Articulos::find()->all();
-
         $items = UtilServices::getEbayProductData();
-        $dataApi = [];
-        foreach($items as $product) {
-            if (in_array($category, $product["categoria"])){
-                array_push($dataApi, $product);
+        $data = Productos::find()->all();
+
+        $dataProductos = [];
+        foreach($data as $product) {
+            if (in_array($category, explode(',',$product["categoria"]))){
+                array_push($dataProductos, $product);
             }
         }
 
+        $dataArticulos = Articulos::find()->all();
+
         return $this->render('productos',[
-            'data' => $dataApi,
+            'data' => $dataProductos,
             'dataArticulos' => $dataArticulos,
             'titulo' => self::TITULO_PRODUCTOS,
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
@@ -374,8 +375,7 @@ class SiteController extends Controller
 
     public function actionProductos(){
 
-        // $data = UtilServices::getEbayProductData();   
-        // return json_encode($data); 
+        $data = UtilServices::getEbayProductData();   
         $items = Productos::find()->all();
         self::$ACTUAL_VIEW = 'productos';
 

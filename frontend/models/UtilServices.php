@@ -240,15 +240,19 @@ class UtilServices
                     $smartWatch,
                 );
 
+
+                $affiliateLink = Parametros::findOne(['parNombre' => 'ebayAffiliateLinkGenerator']);
                 foreach($combined as $producto){
                     $model = new Productos();
-                    $model->imagen = $producto["imagen"];
-                    $model->precio = $producto["precio"];
-                    $model->nombre = $producto["nombre"];
+                    $model->id = rand(100,10000);
+                    $model->marca = 'Na';
+                    $model->imagen = $producto["thumbnailImages"][0]["imageUrl"];
+                    $model->precio = $producto['price']['value'];
+                    $model->nombre = $producto['title'];
                     // $model->descripcion = $producto["descripcion"];
-                    $model->url = $producto["url"];
-                    $model->categoria = $producto["categoria"];
-                    $model->condicion = $producto["condicion"];
+                    $model->url = $producto["itemWebUrl"] . $affiliateLink->parValor;
+                    $model->categoria = implode(',',$producto['category']);
+                    $model->condicion = $producto['condition'];
                     $model->esTemporalEbay = "si";
                     $model->lastFetchedEbay = date("Y-m-d");
                     $model->save();

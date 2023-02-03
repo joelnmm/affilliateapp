@@ -9,7 +9,7 @@ return [
         //     'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
         //     'username' => 'root',
         //     'password' => 'Galaxycuatro12345',
-        //     'charset' => 'utf8',
+        //     'charset' => 'utf8mb4',
         // ],
 
         // Server side
@@ -18,7 +18,7 @@ return [
             'dsn' => 'mysql:host=127.0.0.1;dbname=affilliateappdb',
             'username' => 'root',
             'password' => '!WWWlopalo1997',
-            'charset' => 'utf8',
+            'charset' => 'utf8mb4',
         ],
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
