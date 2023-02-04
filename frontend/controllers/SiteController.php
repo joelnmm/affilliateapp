@@ -326,7 +326,7 @@ class SiteController extends Controller
         // $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
         // $dataSql = Productos::findBySql($sql)->all();
 
-        $items = UtilServices::getEbayProductData();
+        UtilServices::getEbayProductData();
         $data = Productos::find()->all();
         $dataArticulos = Articulos::find()->all();
 
