@@ -375,7 +375,8 @@ class SiteController extends Controller
 
     public function actionProductos(){
 
-        $data = UtilServices::getEbayProductData();   
+        $data = UtilServices::getEbayProductData();  
+        // return json_encode($data); 
         $items = Productos::find()->all();
         self::$ACTUAL_VIEW = 'productos';
 
@@ -388,24 +389,6 @@ class SiteController extends Controller
             'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
             'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
         ]);        
-    }
-
-    public function actionProductosSQL(){
-
-        self::$ACTUAL_VIEW = 'productos';
-        $data = Productos::find()->all();
-        $dataArticulos = Articulos::find()->all();
-        shuffle($dataArticulos);
-        shuffle($data);
- 
-        return $this->render('productos',[
-            'data' => $data,
-            'dataArticulos' => $dataArticulos,
-            'titulo' => self::TITULO_PRODUCTOS,
-            'subtitulo' =>  self::SUBTITULO_PRODUCTOS,
-            'subtituloProducto' => self::SUBTITULO_PRODUCTOS_GRID
-        ]);
-
     }
 
     /**

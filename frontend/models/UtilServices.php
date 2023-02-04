@@ -162,15 +162,16 @@ class UtilServices
 
         $productObject = Productos::find()->where(['esTemporalEbay' => "si"])->one();
 
-        if(isset($productObject)){
-            $fechaExpiracion = date("Y-m-d", strtotime($productObject->lastFetchedEbay . "+ 1 days"));
+        if(isset($productObject->nombre)){
+
+            $fechaExpiracion = $productObject->lastFetchedEbay;
             $dateTimeActual = date("Y-m-d");
         }else{
             $fechaExpiracion = 0;
             $dateTimeActual = 0;
         }
 
-        if($dateTimeActual >= $fechaExpiracion ){
+        if($dateTimeActual >= $fechaExpiracion || !isset($productObject->nombre)){
 
             // Eliminamos los registros anteriores para aactualizar con los nuevos
             $productosEliminar = Productos::find()->where(['esTemporalEbay' => "si"])->all();
@@ -254,7 +255,7 @@ class UtilServices
                     $model->categoria = implode(',',$producto['category']);
                     $model->condicion = $producto['condition'];
                     $model->esTemporalEbay = "si";
-                    $model->lastFetchedEbay = date("Y-m-d");
+                    $model->lastFetchedEbay = date("Y-m-d", strtotime(date("Y-m-d") . "+ 1 days"));
                     $model->save();
                 }
             }
