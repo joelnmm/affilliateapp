@@ -374,6 +374,9 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Action to display the main products page
+     */
     public function actionProductos(){
 
         // $data = UtilServices::getEbayProductData();  
