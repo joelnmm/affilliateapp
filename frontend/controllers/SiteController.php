@@ -376,7 +376,7 @@ class SiteController extends Controller
 
     public function actionProductos(){
 
-        $data = UtilServices::getEbayProductData();  
+        // $data = UtilServices::getEbayProductData();  
         // return json_encode($data); 
         $items = Productos::find()->all();
         self::$ACTUAL_VIEW = 'productos';
