@@ -323,6 +323,7 @@ class SiteController extends Controller
         self::$ACTUAL_VIEW = 'productos';
         $query = $_GET['query'];
 
+        // to use sql queries
         // $sql = "SELECT * FROM productos WHERE nombre LIKE '%".$query."%'";
         // $dataSql = Productos::findBySql($sql)->all();
 
